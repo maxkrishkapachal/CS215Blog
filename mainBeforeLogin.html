@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Main Page Before Login</title>
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+    </head>
+
+    <body>
+        <div id="container">
+            <header id="header">
+                <div>logo</div>
+                <div>login</div>
+                <div>signup</div>
+            </header>
+
+            <!-- <main id="main-center"> -->
+                <div id="profile">
+                    <form class="auth-form" action="mainAfterLogin.html">
+                        <div class="title-text">LOGIN</div>
+
+                        <!-- When you style this div, the form will change from single to two column -->
+                        <!-- one HTML element or text node to a grid cell - each row needs two items -->
+                        <div class="form-input-grid">
+                            <!-- username label and input -->
+                            <!-- <label for="uname">Username</label> -->
+                            <input type="text" id="uname" name="uname" placeholder="Username" />
+        
+                            <!-- HTML To Do 1: add password label and input 
+                                      Be sure the label is *for* the input -->
+                            <!-- <label for="pword">Password</label> -->
+                            <input type="password" id="pword" name="pword" placeholder="Password"/>
+        
+                            <input type="submit" id="login" name="login" value="Login" />
+        
+                        </div>
+                    </form>
+                    <div id="signup-grid"> 
+                        <label class="title-text">NEW HERE?</label>
+                        <a href="signup.html" id="signup">Signup</a>
+                    </div>
+                </div>
+
+                <div id="announcement-bar">
+                    <div>check out the newest posts</div>
+                </div>
+
+                <div id="front-page-posts">
+                    <div>NEWEST POSTS HERE</div>
+                </div>
+            <!-- </main> -->
+
+            <!-- <footer id="footer">
+
+            </footer> -->
+        </div>
+    </body>
+
+</html>
