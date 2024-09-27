@@ -7,7 +7,7 @@ A blog hosted on Titan using JavaScript, HTML, CSS, PHP, SQL, and Ajax for CS 21
 ## Authors
 
 - Max Krishka-Pachal (200526378) [@maxkrishkapachal](https://www.github.com/maxkrishkapachal)
-- Dmytro Stepaniuk (200426341)
+- Dmytro Stepaniuk (200426341) [@kapibaraa](https://www.github.com/kapibaraa)
 
 
 ## Roadmap
