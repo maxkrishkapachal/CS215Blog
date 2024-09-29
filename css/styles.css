@@ -1,135 +1,206 @@
 body {
     background-color: #fff;
-    /* CSS To Do 1: Roboto is a web delivered Google Font. 
-                    Find and CSS @import it at the top of this file */
     font-family: 'Roboto', sans-serif;
     color: black;
-    margin: 0px;
+    margin: 0;
 }
 
-
-/* 
-    Common CSS styles for all the files ends
-*/
-
-
-
-/* 
-    CSS styles for Login and Signup pages begins
-*/
 #container {
     display: grid;
-    grid-template-columns: 30% 70%;
-    grid-template-rows: 150px 100px auto;
+    grid-template-columns: 30% auto;
+    grid-template-rows: 150px 100px 1fr;
     grid-gap: 5px;
-
-    /* vh: viewport height */
     min-height: 100vh;
+    max-height: 100vh;
 }
-
 
 #header {
     background-color: darkolivegreen;
     color: white;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding: 20px;
     grid-column: 1/3;
     grid-row: 1/2;
-    display: grid;
-    justify-content: center;
-    align-items: center;
 }
 
-#profile {
-    background-color: lightsalmon;
-    color: white;
-    grid-column: 1/2;
-    grid-row: 2/4;
+#logo {
+    font-size: 80px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#header-button-container {
+    width: 150px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 10px;
+    margin-left: auto;
+}
+
+.header-button {
+    width: 100%;
+}
+
+#profile {
+    /* background-color: lightsalmon; */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     gap: 60px;
+    grid-column: 1/2;
+    grid-row: 2/4;
+    padding: 35px 0px 35px 0px;
+}
+
+#announcement-bar, #front-page-posts {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    color: white;
+    padding: 35px;
 }
 
 #announcement-bar {
-    background-color: darkseagreen;
-    color: white;
+    /* background-color: darkseagreen; */
     grid-column: 2/3;
     grid-row: 2/3;
-    display: grid;
-    justify-content: center;
-    align-items: center;
 }
 
 #front-page-posts {
-    background-color: darkred;
-    color: white;
+    /* background-color: darkred; */
     grid-column: 2/3;
     grid-row: 3/4;
-    display: grid;
-    justify-content: center;
-    align-items: center;
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* max-height: 100%; */
 }
 
-.auth-form {
-    /* margin-top: 60px; */
-    /* padding: 1em; */
-    display: block; 
-    width: 80%; 
+.auth-form, #signup-grid {
+    width: 80%;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     text-align: center;
 }
 
 .form-input-grid {
     display: grid;
     row-gap: 20px;
-    /* margin-bottom: 10px; */
-}
-
-#signup-grid {
-    width: 80%; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-    margin-top: 10px; 
-    gap: 10px;
-    text-align: center;
-}
-
-.title-text {
-    font-size: 30px;
-    color: black;
 }
 
 #uname, #pword {
     border-radius: 5px;
     height: 20px; 
-    font-size: 16px; 
-    padding: 10px; 
     font-size: 20px;
+    padding: 10px;
 }
 
-
-/* CSS To Do 8: Create a rule for the submit button div so that the submit button aligns to the right*/
-/* .align-right {
-    display: grid;
-    justify-items: right;
-    align-items: end;
-} */
-
-/* CSS To Do 9: Create a rule for the submit button 
-                to add good looking padding and margins. */
-#login, #signup {
-    width: 100%; 
-    border: solid lightblue 2px;
+.login, .signup {
+    border: 2px solid lightblue;
     border-radius: 5px;
     background: lightblue;
-    padding: 5px 15px; 
+    padding: 5px 15px;
     color: black;
     font-size: 20px;
     box-sizing: border-box;
+    text-align: center;
     text-decoration: none;
+    width: 100%;
 }
 
-#login:hover, #signup:hover {
+.login:hover, .signup:hover {
     cursor: pointer;
+}
+
+.title-text {
+    font-size: 30px;
+    color: black;
+    text-align: center;
+}
+
+
+.individual-post {
+    display: grid;
+    grid-template-columns: 10% auto 30%;
+    grid-template-rows: 18% 13% auto 25% 10%;
+    grid-gap: 5px;
+    width: 100%;
+    height: 200px;
+    /* background-color: peru; */
+    color: black;
+    padding: 5px;
+}
+
+.post-avatar {
+    grid-column: 1/2;
+    grid-row: 1/3;
+    /* background-color: cornsilk; */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.post-username {
+    grid-column: 2/3;
+    grid-row: 1/2;
+    /* background-color: cornsilk; */
+    font-size: 20px;
+}
+
+.post-time {
+    grid-column: 2/3;
+    grid-row: 2/3;
+    /* background-color: cornsilk; */
+    font-size: 15px;
+}
+
+.post-title {
+    grid-column: 1/3;
+    grid-row: 3/4;
+    /* background-color: cornsilk; */
+    font-size: 25px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.post-username, .post-time, .post-title {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.post-content-preview {
+    grid-column: 1/3;
+    grid-row: 4/6;
+    /* background-color: cornsilk; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.post-photo {
+    grid-column: 3/4;
+    grid-row: 1/5;
+    /* background-color: cornsilk; */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.post-stats {
+    grid-column: 3/4;
+    grid-row: 5/6;
+    /* background-color: cornsilk; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;;
 }
