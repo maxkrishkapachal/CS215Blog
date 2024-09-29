@@ -196,7 +196,7 @@ body {
 }
 
 .auth-form,
-#signup-grid {
+#button-grid {
     width: 80%;
     padding: 10px;
     display: flex;
