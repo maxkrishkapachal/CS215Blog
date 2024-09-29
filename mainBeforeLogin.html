@@ -9,9 +9,11 @@
     <body>
         <div id="container">
             <header id="header">
-                <div>logo</div>
-                <div>login</div>
-                <div>signup</div>
+                <div id="logo">LOGO</div>
+                <div id="header-button-container">
+                    <a href="signup.html" class="header-button signup">Signup</a>
+                    <a href="mainBeforeLogin.html" class="header-button login">Login</a>
+                </div>
             </header>
 
             <!-- <main id="main-center"> -->
@@ -31,22 +33,36 @@
                             <!-- <label for="pword">Password</label> -->
                             <input type="password" id="pword" name="pword" placeholder="Password"/>
         
-                            <input type="submit" id="login" name="login" value="Login" />
+                            <input type="submit" id="login" class="form-button login" name="login" value="Login" />
         
                         </div>
                     </form>
                     <div id="signup-grid"> 
                         <label class="title-text">NEW HERE?</label>
-                        <a href="signup.html" id="signup">Signup</a>
+                        <a href="signup.html" class="form-button signup">Signup</a>
                     </div>
                 </div>
 
                 <div id="announcement-bar">
-                    <div>check out the newest posts</div>
+                    <div class="title-text">CHECK OUT THE NEWEST POSTS:</div>
                 </div>
 
-                <div id="front-page-posts">
-                    <div>NEWEST POSTS HERE</div>
+                <div id="front-page-posts" class="scrollable">
+                    <div class="individual-post">
+                        <div class="post-avatar">A</div>
+                        <div class="post-username">USERNAME</div>
+                        <div class="post-time">TIME</div>
+                        <div class="post-title">BLOG POST TITLE</div>
+                        <div class="post-content-preview">This is the text that shows up in the blog post
+                            I am giving example text text text yeah yeah yeah.
+                        </div>
+                        <!-- <div class="post-see-more-button">See More...</div> -->
+                        <div class="post-photo">Photo</div>
+                        <div class="post-stats">
+                            <div class="post-likes">Like# Liked</div>
+                            <div class="post-comments">Comment# Comments</div>
+                        </div> 
+                    </div>
                 </div>
             <!-- </main> -->
 
