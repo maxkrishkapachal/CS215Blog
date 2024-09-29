@@ -160,10 +160,6 @@ body {
     margin-left: auto;
 }
 
-.header-button {
-    width: 100%;
-}
-
 #profile {
     color: white;
     display: flex;
@@ -236,8 +232,7 @@ body {
     font-size: 20px;
 }
 
-.login,
-.signup {
+.button-style {
     border: 2px solid lightblue;
     border-radius: 5px;
     background: lightblue;
@@ -250,8 +245,7 @@ body {
     width: 100%;
 }
 
-.login:hover,
-.signup:hover {
+.button-style:hover {
     cursor: pointer;
 }
 
