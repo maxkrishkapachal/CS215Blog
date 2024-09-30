@@ -18,6 +18,31 @@ body {
     max-height: 100vh;
 }
 
+/* GENERAL STYLING */
+
+.button-style {
+    border: 2px solid lightblue;
+    border-radius: 5px;
+    background: lightblue;
+    padding: 5px 15px;
+    color: black;
+    font-size: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+}
+
+.button-style:hover {
+    cursor: pointer;
+}
+
+.title-text {
+    font-size: 30px;
+    color: black;
+    text-align: center;
+}
+
 /******************/
 /* HEADER CONTENT */
 /******************/
@@ -64,12 +89,13 @@ body {
     grid-column: 1 / 2;
     grid-row: 2 / 4;
     padding: 20px 0;
+    max-height: 100%;
 }
 
 /* LOGIN */
 
 .auth-form,
-#signup-grid {
+.button-grid {
     width: 80%;
     padding: 10px;
     display: flex;
@@ -82,6 +108,36 @@ body {
 .form-input-grid {
     display: grid;
     row-gap: 20px;
+}
+
+#uname,
+#pword {
+    border-radius: 5px;
+    height: 20px;
+    font-size: 20px;
+    padding: 10px 0px 10px 0px;
+    width: 99%;
+}
+
+.placeholder-container {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+}
+
+.placeholder {
+    color: black;
+    font-size: 20px;
+}
+
+/* LOGGED IN */
+
+
+#profile-picture {
+    width: auto; 
+    height: 200px;
+    object-fit: contain;
+    border-radius: 5px;
 }
 
 /* SIGNUP */
@@ -113,167 +169,9 @@ body {
     overflow-y: auto;
 }
 
-
-
-
-
-#uname,
-#pword {
-    border-radius: 5px;
-    height: 20px;
-    font-size: 20px;
-    padding: 10px 0px 10px 0px;
-    width: 99%;
-}
-
-.placeholder-container {
-    margin: 0px;
-    padding: 0px;
-    width: 100%;
-}
-
-
-.placeholder {
-    color: black;
-    font-size: 20px;
-}body {
-    background-color: #fff;
-    font-family: 'Roboto', sans-serif;
-    color: black;
-    margin: 0;
-}
-
-#container {
-    display: grid;
-    grid-template-columns: 30% auto;
-    grid-template-rows: 150px 70px 1fr;
-    grid-gap: 5px;
-    min-height: 100vh;
-    max-height: 100vh;
-}
-
-#header {
-    background-color: darkolivegreen;
-    color: white;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 20px;
-    grid-column: 1 / 3;
-    grid-row: 1 / 2;
-}
-
-#logo {
-    font-size: 80px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-#header-button-container {
-    width: 150px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin-left: auto;
-}
-
-#profile {
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 30px;
-    grid-column: 1 / 2;
-    grid-row: 2 / 4;
-    padding: 20px 0;
-}
-
-#announcement-bar,
-#front-page-posts {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-    color: white;
-    padding: 20px;
-}
-
-#announcement-bar {
-    grid-column: 2 / 3;
-    grid-row: 2 / 3;
-}
-
-#front-page-posts {
-    grid-column: 2 / 3;
-    grid-row: 3 / 4;
-    overflow-x: hidden;
-    overflow-y: auto;
-}
-
-.auth-form,
-#button-grid {
-    width: 80%;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    text-align: center;
-    gap: 30px;
-}
-
-.form-input-grid {
-    display: grid;
-    row-gap: 20px;
-}
-
-#uname,
-#pword {
-    border-radius: 5px;
-    height: 20px;
-    font-size: 20px;
-    padding: 10px 0px 10px 0px;
-    width: 99%;
-}
-
-.placeholder-container {
-    margin: 0px;
-    padding: 0px;
-    width: 100%;
-}
-
-
-.placeholder {
-    color: black !important;
-    font-size: 20px;
-}
-
-.button-style {
-    border: 2px solid lightblue;
-    border-radius: 5px;
-    background: lightblue;
-    padding: 5px 15px;
-    color: black;
-    font-size: 20px;
-    box-sizing: border-box;
-    text-align: center;
-    text-decoration: none;
-    width: 100%;
-}
-
-.button-style:hover {
-    cursor: pointer;
-}
-
-.title-text {
-    font-size: 30px;
-    color: black;
-    text-align: center;
-}
+/********************/
+/* INDIVIDUAL POSTS */
+/********************/
 
 .individual-post {
     padding: 5px;
