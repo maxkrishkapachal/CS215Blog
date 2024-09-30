@@ -1,11 +1,11 @@
 @font-face {
     font-family: 'LS';
-    src: url('../../fonts/LS/Fonts/lsregular.otf') format('opentype');  
+    src: url('../fonts/LS/Fonts/lsregular.otf') format('opentype');  
 }
 
 @font-face {
     font-family: 'RabbitHole';
-    src: url('../../fonts/RabbitHole/Fonts/rabbit\ hole.ttf') format('truetype');  
+    src: url('../fonts/RabbitHole/Fonts/rabbit\ hole.ttf') format('truetype');  
 }
 
 :root {
