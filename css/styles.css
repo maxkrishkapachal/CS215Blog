@@ -1,10 +1,32 @@
+@font-face {
+    font-family: 'LS';
+    src: url('../../fonts/LS/Fonts/lsregular.otf') format('opentype');  
+}
+
+@font-face {
+    font-family: 'RabbitHole';
+    src: url('../../fonts/RabbitHole/Fonts/rabbit\ hole.ttf') format('truetype');  
+}
+
+:root {
+    --main: #25402A;
+    --accent-1: #FFB20E;
+    --accent-2: #BF650D;
+    --accent-3: #DA2C38;
+    --accent-4: #A37000;
+
+    --gradient-1: rgba(2,91,19,1);
+    --gradient-2: rgba(28,75,37,1);
+    --gradient-3: rgba(24,32,25,1);
+}
+
 /***************/
 /* BASE LAYOUT */
 /***************/
 
 body {
     background-color: #fff;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'LS', sans-serif;
     color: black;
     margin: 0;
 }
@@ -12,8 +34,8 @@ body {
 #container {
     display: grid;
     grid-template-columns: 25% auto;
-    grid-template-rows: 150px 70px 1fr;
-    grid-gap: 5px;
+    grid-template-rows: 180px 70px 1fr;
+    /* grid-gap: 5px; */
     min-height: 100vh;
     max-height: 100vh;
 }
@@ -21,9 +43,10 @@ body {
 /* GENERAL STYLING */
 
 .button-style {
-    border: 2px solid lightblue;
+    font-family: "LS", sans-serif;
+    border: 2px solid var(--accent-1);
     border-radius: 5px;
-    background: lightblue;
+    background: var(--accent-1);
     padding: 5px 15px;
     color: black;
     font-size: 20px;
@@ -44,8 +67,8 @@ body {
 /******************/
 
 #header {
-    background-color: darkolivegreen;
-    color: white;
+    background: radial-gradient(circle, var(--gradient-1) 0%, var(--gradient-2) 50%, var(--gradient-3) 100%);
+    color: var(--accent-1);
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -55,10 +78,27 @@ body {
 }
 
 #logo {
-    font-size: 80px;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    font-family: "RabbitHole", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+#logo-image {
+    width: auto;
+    height: 115px;;
+    object-fit: contain;
+}
+
+#company-name {
+    font-size: 150px;
+    line-height: 1;
+    margin-left: 10px;
+    padding: 0;
+    margin-bottom: -20px;
 }
 
 #header-button-container {
@@ -76,6 +116,7 @@ body {
 /*******************/
 
 #profile {
+    background-color: cornsilk; 
     color: white;
     display: flex;
     flex-direction: column;
@@ -152,6 +193,7 @@ body {
     gap: 20px;
     color: white;
     padding: 20px;
+    background-color: cornsilk;
 }
 
 #announcement-bar {
@@ -183,12 +225,13 @@ body {
 
 .individual-post,
 .full-post {
+    background-color: white;
     padding: 5px;
     display: grid;
     grid-gap: 5px;
     width: 100%;
     color: black;
-    border: solid grey 2px;
+    border: solid var(--main) 2px;
     border-radius: 5px;
 }
 
@@ -270,6 +313,7 @@ a {
     grid-row: 4 / 6;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 15.5px;
 }
 
 .post-content-full {
@@ -331,6 +375,7 @@ a {
 }
 
 .individual-comment {
+    background-color: white;
     padding: 5px;
     display: grid;
     grid-template-columns: 8% auto 10%;
@@ -339,7 +384,7 @@ a {
     grid-gap: 5px;
     width: 100%;
     color: black;
-    border: solid grey 2px;
+    border: solid var(--main) 2px;
     border-radius: 5px;
 }
 
@@ -397,7 +442,7 @@ a {
 }
 
 .vote-style {
-    border: 2px solid grey;
+    border: 2px solid var(--main);
     border-radius: 5px;
     padding: 5px 5px;
     margin: 0px 5px;
@@ -418,7 +463,7 @@ a {
     grid-gap: 10px;
     color: black;
     width: 100%;
-    border: 2px solid grey;
+    border: 2px solid var(--main);
     border-radius: 5px;;
     padding: 5px;
 }
