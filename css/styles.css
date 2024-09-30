@@ -147,7 +147,8 @@ body {
 /******************/
 
 #announcement-bar,
-#front-page-posts {
+#front-page-posts,
+#view-post-container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -162,11 +163,20 @@ body {
     grid-row: 2 / 3;
 }
 
+#front-page-posts,
+#view-post-container {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
 #front-page-posts {
     grid-column: 2 / 3;
     grid-row: 3 / 4;
-    overflow-x: hidden;
-    overflow-y: auto;
+}
+
+#view-post-container {
+    grid-column: 2 / 3;
+    grid-row: 2 / 4;
 }
 
 /********************/
@@ -222,6 +232,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+}
+
+a {
+    color: black;
 }
 
 .post-content-preview {
