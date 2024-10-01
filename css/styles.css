@@ -241,6 +241,9 @@ body {
     color: white;
     padding: 20px;
     background-color: cornsilk;
+}
+
+#create-post {
     overflow-x: hidden;
     overflow-y: auto;
 }
