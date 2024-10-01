@@ -586,15 +586,19 @@ a {
 
 /* LEAVE A COMMENT */
 
-.comment-form {
+.comment-form-container {
     display: grid;
     grid-template-columns: 80% 19%;
     grid-template-rows: 1fr;
     grid-gap: 10px;
+}
+
+.comment-form {
     color: black;
-    width: 100%;
     border: 2px solid var(--main);
-    border-radius: 5px;;
+    border-radius: 5px;
+    width: 100%;
+    margin: 0px;
     padding: 5px;
 }
 
