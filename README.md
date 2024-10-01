@@ -1,5 +1,5 @@
 
-# CS 215 Blog
+# BaseCamp
 
 A blog hosted on Titan using JavaScript, HTML, CSS, PHP, SQL, and Ajax for CS 215.
 
@@ -13,4 +13,5 @@ A blog hosted on Titan using JavaScript, HTML, CSS, PHP, SQL, and Ajax for CS 21
 ## Roadmap
 
 - ✔️ Assignment 1: Sketching and Storyboarding
-- ⏳ Assignment 2: HTML and CSS
+- ✔️ Assignment 2: HTML and CSS
+- ⏳ Assignment 3: JavaScript
