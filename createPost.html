@@ -1,1 +1,63 @@
-sx
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Create Post</title>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    </head>
+
+    <body>
+        <div id="container">
+            <header id="header">
+                <div id="logo">
+                    <img src="images/LogoNoWordsNoLineTransparent.png" alt="Logo" id="logo-image" />
+                    <div id="company-name">BASECAMP</div>
+                </div>
+                <div id="header-button-container">
+                    <a href="index.html" class="button-style">Logout</a>
+                </div>
+            </header>
+
+            <div id="profile">
+                <div class="title-text">USERNAME</div>
+                
+                <div class="button-grid"> 
+                    <img src="images/red-netflix-profile.jpg" alt="red netflix profile picture" id="profile-picture" />
+                    <a href="homePage.html" class="button-style">DISCOVER</a>
+                    <a href="createPost.html" class="button-style">CREATE</a>
+                    <a href="managePost.html" class="button-style">MANAGE</a>
+                    <a href="" class="button-style">EDIT PROFILE</a>
+                </div>
+            </div>
+
+            <div id="create-post">
+                <div class="title-text">Create your new post:</div>
+                
+                <form class="create-post-form" action="homePage.html" method="POST">
+                    <!-- Label and Input for the post title-->
+                    <div class="placeholder-container">
+                        <label for="post-title" class="placeholder">Post Title:</label>           
+                        <input type="text" id="post-title" name="post-title" required/>
+                    </div>
+                    <!-- Label and Input for the post text-->
+                    <div class="placeholder-container">
+                        <label for="post-text" class="placeholder">Post Body: </label>           
+                        <textarea rows="5" cols="50" id="post-text" name="post-text"> </textarea>
+                    </div>
+
+                    <!-- Label and Input for photo uploading-->
+                    <div class="placeholder-container">
+                        <label for="post-photo" class="placeholder">Upload Profile Photo:   </label>
+                        <input type="file" id="upload-photo-button" name="profile-photo" accept="image/*">
+                        <img class="post-photo" alt="Uploaded Photo" src="images/camping15.jpg">
+                    </div>
+                    <br>
+                    <input type="submit" class="post-button-style" id="post" name="post-button" value="Post" />
+
+                    <br>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

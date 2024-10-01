@@ -29,6 +29,7 @@ body {
     font-family: 'LS', sans-serif;
     color: black;
     margin: 0;
+    background-color: cornsilk;
 }
 
 #container {
@@ -177,7 +178,9 @@ body {
     border-radius: 5px;
 }
 
-/* SIGNUP */
+/**************/
+/* SIGNUP PAGE*/
+/**************/
 
 #signup-form {
     background-color: cornsilk; 
@@ -214,12 +217,12 @@ body {
     width: 99%;
 }
 
-#upload-photo{
+#upload-photo,
+#create-post{
     grid-column: 2 / 3;
     grid-row: 2 / 4;
     display: flex;
     flex-direction: column;
-    /* justify-content: space-between; */
     align-items: center;
     gap: 20px;
     color: white;
@@ -245,8 +248,66 @@ body {
     box-sizing: border-box;
     text-align: center;
     text-decoration: none;
+    width: 280px;
+}
+
+/******************/
+/*CREATE POST PAGE*/
+/******************/
+
+.create-post-form{
+    width: 95%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: left;
+    gap: 30px;
+    background-color: cornsilk;
+}
+
+#post-title,
+#post-text{
+    border-radius: 5px;
+    height: 20px;
+    font-size: 20px;
+    padding: 10px 5px 10px 5px;
+    width: 99%;
+}
+#post-text{
+
+    height: 200px;
+    min-height: 20px;
+    resize: vertical;
+    white-space: pre-wrap;
+    padding: 10px;            
+    line-height: 1.5;         
+    resize: vertical;       
+    word-wrap: break-word;
+}
+
+.post-photo{
+    width: auto;
+    height: 200px;
+    /* object-fit: cover; */
+    border-radius: 5px;
+    padding: 15px 5px 15px 5px;
+}
+
+.post-button-style{
+    font-family: "LS", sans-serif;
+    border: 2px solid var(--accent-1);
+    border-radius: 5px;
+    background: var(--accent-1);
+    padding: 5px 30px 5px 30px;
+    color: black;
+    font-size: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
     width: 20%;
 }
+
 
 /******************/
 /* NEW POSTS PAGE */
