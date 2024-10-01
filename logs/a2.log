@@ -1,0 +1,44 @@
+A simple submission log file should be provided that includes the course name and
+number, the name and student number of everyone in your group, the URL of your web
+application, and a listing of the files you have submitted along with a short explanation
+of the purpose of each file.
+
+CS 215 Web and Database Programming
+Assignment 2
+
+Group 25:
+Maximilian Krishka-Pachal 200526378
+URL: http://www.webdev.cs.uregina.ca/~mjk991/assignment2/index.html
+
+Dmytro Stepaniuk 200426341
+
+
+Submission Details:
+1. index.html
+    This is the front page of our forum, BaseCamp, where the user can login or sign up. It also 
+    shows the top five most recent posts, but the user is unable to click on them unless they're 
+    logged in. Currently it has placeholder data to show what it would look like.
+	
+2. homePage.html
+    This is the front page of our forum once the user is logged in. It shows the top twenty most
+    recent posts from all users. Currently it has placeholder data to show what it would look like.
+	
+3. signup.html
+	This is the page where the user can sign up to create an account. It asks for first name, last
+    name, email, date of birth, avatar, username, password. Clicking signup will take them to the
+    logged in page.
+
+4. managePost.html
+    This is the page to manage all of the current user's posts. They are listed 
+	
+5. createPost.html
+	
+6. viewPost.html
+
+7. css/styles.css
+
+8. fonts/
+
+9. images/
+
+10. README.md
