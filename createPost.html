@@ -34,11 +34,11 @@
             <div id="create-post">
                 <div class="title-text">Create your new post:</div>
                 
-                <form class="create-post-form" action="homePage.html" method="POST">
+                <form class="create-post-form" action="homePage.html" method="post">
                     <!-- Label and Input for the post title-->
                     <div class="placeholder-container">
                         <label for="post-title" class="placeholder">Post Title:</label>           
-                        <input type="text" id="post-title" name="post-title" required/>
+                        <input type="text" id="post-title" name="post-title" />
                     </div>
                     <!-- Label and Input for the post text-->
                     <div class="placeholder-container">
@@ -48,12 +48,13 @@
 
                     <!-- Label and Input for photo uploading-->
                     <div class="placeholder-container">
-                        <label for="add-post-photo" class="placeholder">Upload Photo:</label>
-                        <input type="file" id="upload-photo-button" name="profile-photo" accept="image/*">
-                        <img class="add-post-photo" alt="Uploaded Photo" src="images/camping15.jpg">
+                        <label for="upload-photo-button" class="placeholder">Upload Photo:</label>
+                        <input type="file" id="upload-photo-button" name="profile-photo" accept="image/*" />
+                        <img class="add-post-photo" alt="Uploaded Photo" src="images/camping15.jpg" />
                     </div>
-
-                    <input type="submit" class="post-button-style" id="post" name="post-button" value="Post" />
+                    <div>
+                        <input type="submit" class="post-button-style" id="post" name="post-button" value="Post" />
+                    </div>
                 </form>
             </div>
         </div>
