@@ -243,12 +243,13 @@ body {
     border-radius: 5px;
     background: var(--accent-1);
     padding: 5px 15px;
+    margin: 0px 30px;
     color: black;
     font-size: 20px;
     box-sizing: border-box;
     text-align: center;
     text-decoration: none;
-    width: 280px;
+    width: 315px;
 }
 
 /******************/
@@ -286,12 +287,11 @@ body {
     word-wrap: break-word;
 }
 
-.post-photo{
-    width: auto;
-    height: 200px;
-    /* object-fit: cover; */
-    border-radius: 5px;
-    padding: 15px 5px 15px 5px;
+.add-post-photo{
+    width: 100%;
+    height: auto;
+    margin-top: 25px;
+    display: block;
 }
 
 .post-button-style{
