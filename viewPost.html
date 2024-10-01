@@ -1,38 +1,52 @@
+<!-- 
+Max Krishka-Pachal
+200526378
+October 1 2024
+CS 215
+Assignment 2
+viewPost.html
+-->
+
 <!DOCTYPE html>
 <html>
 
     <head>
         <title>View Post</title>
-        <meta charset="UTF-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="description" content="the page to view a specific post" />
         <link rel="stylesheet" type="text/css" href="css/styles.css" />
     </head>
 
     <body>
         <div id="container">
             <header id="header">
-                <div id="logo">
+                <div id="logo"> 
+                    <!-- the top header logo -->
                     <img src="images/LogoNoWordsNoLineTransparent.png" alt="Logo" id="logo-image" />
                     <div id="company-name">BASECAMP</div>
                 </div>
                 <div id="header-button-container">
+                    <!-- logout button goes here -->
                     <a href="index.html" class="button-style">Logout</a>
                 </div>
             </header>
 
             <div id="profile">
+                <!-- User's username in profile -->
                 <div class="title-text">USERNAME</div>
                 
+                <!-- profile options -->
                 <div class="button-grid"> 
                     <img src="images/red-netflix-profile.jpg" alt="red netflix profile picture" id="profile-picture" />
                     <a href="homePage.html" class="button-style">DISCOVER</a>
                     <a href="createPost.html" class="button-style">CREATE</a>
                     <a href="managePost.html" class="button-style">MANAGE</a>
-                    <a href="" class="button-style">EDIT PROFILE</a>
                 </div>
             </div>
 
-            <div id="view-post-container" class="scrollable">
-                <div class="full-post long-post">
+            <div id="view-post-container">
+                <!-- the post currently being viewed -->
+                <div class="full-post">
                     <img src="images/yellow-netflix-profile.jpg" alt="yellow netflix profile picture" class="post-avatar" />
                     <div class="post-username">SMORE_MASTER</div>
                     <div class="post-time">OCTOBER 3 2024 22:54</div>
@@ -74,6 +88,7 @@
                     </div> 
                 </div>
                 
+                <!-- comments within the post -->
 
                 <div id="comment-section">
 
@@ -151,9 +166,12 @@
                     </div>
                 </div>
 
+                <!-- where the user can leave their own comment -->
                 <form class="comment-form" action="" method="post">
-                    <input type="text" id="leave-comment" name="leave-comment" />
-                    <input type="submit" id="post-comment" class="button-style" name="post-comment" value="Post" />
+                    <div class="comment-form-container">
+                        <input type="text" id="leave-comment" name="leave-comment" />
+                        <input type="submit" id="post-comment" class="button-style" name="post-comment" value="Post" />
+                    </div>
                 </form>
 
             </div>

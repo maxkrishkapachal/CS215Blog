@@ -1,9 +1,19 @@
+<!-- 
+Max Krishka-Pachal
+200526378
+October 1 2024
+CS 215
+Assignment 2
+index.html
+-->
+
 <!DOCTYPE html>
 <html>
 
     <head>
-        <title>Main Page Before Login</title>
-        <meta charset="UTF-8" />
+        <title>Main Page After Login</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="description" content="The front page after the user has logged in with profile on the sidebar" />
         <link rel="stylesheet" type="text/css" href="css/styles.css" />
     </head>
 
@@ -11,41 +21,40 @@
         <div id="container">
             <header id="header">
                 <div id="logo">
+                    <!-- header image and company name - logo -->
                     <img src="images/LogoNoWordsNoLineTransparent.png" alt="Logo" id="logo-image" />
                     <div id="company-name">BASECAMP</div>
                 </div>
                 <div id="header-button-container">
+                    <!-- login and signup buttons in header -->
                     <a href="signup.html" class="button-style">Signup</a>
                     <a href="homePage.html" class="button-style">Login</a>
                 </div>
             </header>
 
             <div id="profile">
+                <!-- where the user can login or sign up - becomes the profile when logged in -->
                 <div class="title-text">LOGIN</div>
                 <form class="auth-form" action="homePage.html" method="post">
-                    
-
-                    <!-- When you style this div, the form will change from single to two column -->
-                    <!-- one HTML element or text node to a grid cell - each row needs two items -->
                     <div class="form-input-grid">
                         <!-- username label and input -->
                         <div class="placeholder-container">
                             <label for="uname" class="placeholder">Username</label>
                             <input type="text" id="uname" name="uname" />
                         </div>
-    
-                        <!-- HTML To Do 1: add password label and input 
-                                    Be sure the label is *for* the input -->
+                        <!-- password label and input -->
                         <div class="placeholder-container">
                             <label for="pword" class="placeholder">Password</label>
                             <input type="password" id="pword" name="pword" />
                         </div>
 
+                        <!-- login button -->
                         <input type="submit" id="login" class="button-style" name="login" value="Login" />
     
                     </div>
                 </form>
                 <div class="button-grid"> 
+                    <!-- for signing up -->
                     <label class="title-text">NEW HERE?</label>
                     <a href="signup.html" class="button-style">Signup</a>
                 </div>
@@ -55,7 +64,9 @@
                 <div class="title-text">CHECK OUT THE NEWEST POSTS:</div>
             </div>
 
-            <div id="front-page-posts" class="scrollable">
+            <div id="front-page-posts">
+                <!-- holds top five current posts. unable to read rest of posts without logging in first -->
+                <!-- these are placeholder posts -->
                 <div class="individual-post">
                     <img src="images/blue-netflix-profile.jpg" alt="blue netflix profile picture" class="post-avatar" />
                     <div class="post-username">CAMPFIRECRAFTER</div>

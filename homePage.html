@@ -1,9 +1,19 @@
+<!-- 
+Max Krishka-Pachal
+200526378
+October 1 2024
+CS 215
+Assignment 2
+homePage.html
+-->
+
 <!DOCTYPE html>
 <html>
 
     <head>
         <title>Main Page After Login</title>
-        <meta charset="UTF-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="description" content="the front page of basecamp before the user has logged in" />
         <link rel="stylesheet" type="text/css" href="css/styles.css" />
     </head>
 
@@ -11,23 +21,26 @@
         <div id="container">
             <header id="header">
                 <div id="logo">
+                    <!-- header logo -->
                     <img src="images/LogoNoWordsNoLineTransparent.png" alt="Logo" id="logo-image" />
                     <div id="company-name">BASECAMP</div>
                 </div>
                 <div id="header-button-container">
+                    <!-- logout button -->
                     <a href="index.html" class="button-style">Logout</a>
                 </div>
             </header>
 
             <div id="profile">
+                <!-- profile username -->
                 <div class="title-text">USERNAME</div>
                 
+                <!-- profile options -->
                 <div class="button-grid"> 
                     <img src="images/red-netflix-profile.jpg" alt="red netflix profile picture" id="profile-picture" />
                     <a href="homePage.html" class="button-style">DISCOVER</a>
                     <a href="createPost.html" class="button-style">CREATE</a>
                     <a href="managePost.html" class="button-style">MANAGE</a>
-                    <a href="" class="button-style">EDIT PROFILE</a>
                 </div>
             </div>
 
@@ -35,7 +48,8 @@
                 <div class="title-text">CHECK OUT THE NEWEST POSTS:</div>
             </div>
 
-            <div id="front-page-posts" class="scrollable">
+            <div id="front-page-posts">
+                <!-- shows the top 20 posts, placeholders for now -->
                 <div class="individual-post">
                     <img src="images/blue-netflix-profile.jpg" alt="blue netflix profile picture" class="post-avatar" />
                     <div class="post-username">CAMPFIRECRAFTER</div>
@@ -465,7 +479,7 @@
                     <div class="post-username">OUTDOOR_CHEF</div>
                     <div class="post-time">OCTOBER 3 2024 10:22</div>
                     <div class="post-title">
-                        <a href="viewPost.html">Check out my recipes for fun campfire recipes!</a>
+                        <a href="viewPost.html">Check out my fun campfire recipes!</a>
                     </div>
                     <div class="post-content-preview">
                         Nullam ac maximus ipsum, at pharetra lacus. Phasellus aliquam 
