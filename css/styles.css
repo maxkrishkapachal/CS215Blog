@@ -67,7 +67,7 @@ body {
 /* HEADER CONTENT */
 /******************/
 
-header {
+#header {
     background: radial-gradient(circle, var(--gradient-1) 0%, var(--gradient-2) 50%, var(--gradient-3) 100%);
     color: var(--accent-1);
     display: flex;
