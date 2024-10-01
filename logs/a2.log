@@ -14,31 +14,45 @@ Dmytro Stepaniuk 200426341
 
 
 Submission Details:
-1. index.html
+1. index.html - created by Max
     This is the front page of our forum, BaseCamp, where the user can login or sign up. It also 
     shows the top five most recent posts, but the user is unable to click on them unless they're 
     logged in. Currently it has placeholder data to show what it would look like.
 	
-2. homePage.html
+2. homePage.html - created by Max
     This is the front page of our forum once the user is logged in. It shows the top twenty most
     recent posts from all users. Currently it has placeholder data to show what it would look like.
 	
-3. signup.html
+3. signup.html - created by Dmytro
 	This is the page where the user can sign up to create an account. It asks for first name, last
     name, email, date of birth, avatar, username, password. Clicking signup will take them to the
     logged in page.
 
-4. managePost.html
-    This is the page to manage all of the current user's posts. They are listed 
+4. managePost.html - created by Dmytro
+    This is the page to manage all of the current user's posts. They are listed in their entirety 
+    with all comments from posts attached. The user can still open these posts in the post view.
+    Currently it has placeholder data to show what it would look like.
 	
-5. createPost.html
+5. createPost.html - created by Dmytro
+    This is the page to create a new post. It allows for a post title, a post body, and an image.
+    There is a default image set up already which can be swapped out.
 	
-6. viewPost.html
+6. viewPost.html - created by Max
+    This is the page to view a post in its entirety. It can be accessed by clicking on the title
+    of any post. It shows the entire post, plus the comments on it, and there is a bar at the bottom
+    of the page to leave a comment. Currently, all posts lead to the same example placeholder post.
 
-7. css/styles.css
+7. css/styles.css - created by Max and Dmytro
+    This includes all the styling for each page, split up by function. There are sections for the
+    profile, new posts, individual preview posts, full posts, comments, all forms, and more. It
+    also includes the fonts.
 
 8. fonts/
+    All the fonts used in the code are stored in this folder. 
 
 9. images/
+    All images used including logo, placeholder profile images, placeholder post photos, and
+    sign up page default image.
 
 10. README.md
+    This is the read me for the entire project with milestones.
