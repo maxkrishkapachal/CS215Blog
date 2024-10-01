@@ -1,8 +1,19 @@
+/*
+Max Krishka-Pachal (200526378)
+Dmytro Stepaniuk (200426341)
+October 1 2024
+CS 215
+Assignment 2
+styles.css
+*/
+
+/* everything font */
 @font-face {
     font-family: 'LS';
     src: url('../fonts/LS/Fonts/lsregular.otf') format('opentype');  
 }
 
+/* logo/header font */
 @font-face {
     font-family: 'RabbitHole';
     src: url('../fonts/RabbitHole/Fonts/rabbit\ hole.ttf') format('truetype');  
@@ -32,11 +43,11 @@ body {
     background-color: cornsilk;
 }
 
+/* holds all page elements */
 #container {
     display: grid;
     grid-template-columns: 25% auto;
     grid-template-rows: 180px 70px 1fr;
-    /* grid-gap: 5px; */
     min-height: 100vh;
     max-height: 100vh;
 }
@@ -78,6 +89,7 @@ body {
     grid-row: 1 / 2;
 }
 
+/* holds both the company name and the logo image */
 #logo {
     position: absolute;
     left: 50%;
@@ -102,6 +114,7 @@ body {
     margin-bottom: -20px;
 }
 
+/* holds both the login and signup buttons in the header */
 #header-button-container {
     width: 150px;
     display: flex;
@@ -157,6 +170,7 @@ body {
     width: 99%;
 }
 
+/* holds labels for input fields */
 .placeholder-container {
     margin: 0px;
     padding: 0px;
@@ -169,7 +183,6 @@ body {
 }
 
 /* LOGGED IN */
-
 
 #profile-picture {
     width: auto; 
@@ -228,6 +241,8 @@ body {
     color: white;
     padding: 20px;
     background-color: cornsilk;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .profile-photo{
@@ -313,6 +328,7 @@ body {
 /* NEW POSTS PAGE */
 /******************/
 
+/* all the pages on the front page */
 #announcement-bar,
 #front-page-posts,
 #view-post-container {
@@ -353,6 +369,7 @@ body {
 
 /* POST FORMAT */
 
+/* for preview posts on front page/management page and for viewing full posts */
 .individual-post,
 .full-post {
     background-color: white;
@@ -586,13 +603,6 @@ a {
 
 /* LEAVE A COMMENT */
 
-.comment-form-container {
-    display: grid;
-    grid-template-columns: 80% 19%;
-    grid-template-rows: 1fr;
-    grid-gap: 10px;
-}
-
 .comment-form {
     color: black;
     border: 2px solid var(--main);
@@ -602,6 +612,14 @@ a {
     padding: 5px;
 }
 
+.comment-form-container {
+    display: grid;
+    grid-template-columns: 80% 19%;
+    grid-template-rows: 1fr;
+    grid-gap: 10px;
+}
+
+/* comment input box */
 #leave-comment {
     width: 100%;
     border: transparent;
@@ -609,6 +627,7 @@ a {
     grid-row: 1 / 2;
 }
 
+/* comment button */
 #post-comment {
     width: auto;
     grid-column: 2 / 3;
