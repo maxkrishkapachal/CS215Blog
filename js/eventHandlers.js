@@ -128,7 +128,41 @@ function validateSignup(event){
 }
 
 
+function validateLogin(event){
+    // email
+    let email = document.getElementById("email");
+    // password
+    let pword = document.getElementById("p-word");
 
+    let formIsValid = true;
+
+    if(!validateEmail(email.value)){
+        email.classList.add("error-input");
+        let errorMessage = document.getElementById("error-text-email");
+        errorMessage.classList.remove("hidden");
+        formIsValid = false;
+    }
+    else {
+        email.classList.remove("error-input");
+        let errorMessage = document.getElementById("error-text-email");
+        errorMessage.classList.add("hidden");
+    } 
+
+    if(!validatePassword(password.value)){
+        password.classList.add("error-input");
+        let errorMessage = document.getElementById("error-text-pword");
+        errorMessage.classList.remove("hidden");
+        formIsValid = false;
+    }
+    else {
+        password.classList.remove("error-input");
+        let errorMessage = document.getElementById("error-text-pword");
+        errorMessage.classList.add("hidden");
+    }  
+
+    if(!formIsValid)
+        event.preventDefault();
+}
 
 // email handler
 function emailHandler(event){
