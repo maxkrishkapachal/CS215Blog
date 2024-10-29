@@ -178,7 +178,7 @@ body {
     row-gap: 20px;
 }
 
-#uname,
+#email,
 #pword {
     border-radius: 5px;
     height: 20px;
@@ -710,8 +710,11 @@ a {
 .error-text {
     color: #ff0000;
     font-style: italic;
+    padding: 0px;
+    margin-top: 10px;
 }
 
 .hidden {
     visibility: hidden;
+    display: none;
 }

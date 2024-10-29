@@ -28,24 +28,30 @@ index.html
                 <div id="header-button-container">
                     <!-- login and signup buttons in header -->
                     <a href="signup.html" class="button-style">Signup</a>
-                    <a href="homePage.html" class="button-style">Login</a>
+                    <a href="index.html" class="button-style">Login</a>
                 </div>
             </header>
 
             <div id="profile" class="profile-else">
                 <!-- where the user can login or sign up - becomes the profile when logged in -->
                 <div class="title-text">LOGIN</div>
-                <form class="auth-form" action="homePage.html" method="post">
+                <form id="login-form" class="auth-form" action="homePage.html" method="post">
                     <div class="form-input-grid">
                         <!-- username label and input -->
                         <div class="placeholder-container">
-                            <label for="uname" class="placeholder">Username</label>
-                            <input type="text" id="uname" name="uname" />
+                            <label for="email" class="placeholder">Email</label>
+                            <input type="text" id="email" name="email" />
+                            <div id="error-text-email" class="error-text hidden">
+                                Email invalid.
+                            </div>
                         </div>
                         <!-- password label and input -->
                         <div class="placeholder-container">
                             <label for="pword" class="placeholder">Password</label>
                             <input type="password" id="pword" name="pword" />
+                            <div id="error-text-pword" class="error-text hidden">
+                                Password invalid.
+                            </div>
                         </div>
 
                         <!-- login button -->
