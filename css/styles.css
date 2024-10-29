@@ -697,3 +697,21 @@ a {
     grid-column: 2 / 3;
     grid-row: 1 / 2;
 }
+
+
+/******************/
+/* ERROR HANDLING */
+/******************/
+
+.error-input {
+    border-color: #ff0000;
+}
+
+.error-text {
+    color: #ff0000;
+    font-style: italic;
+}
+
+.hidden {
+    visibility: hidden;
+}

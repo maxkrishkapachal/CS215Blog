@@ -21,7 +21,7 @@
                     <a href="homePage.html" class="button-style">Login</a>
                 </div>
             </header>
-            <form class="signup-form-container" action="homePage.html" method="post">
+            <form id="signup-form" class="signup-form-container" action="homePage.html" method="post">
                 <div id="profile" class="profile-signup">
                     <!-- where the user can login or sign up - becomes the profile when logged in -->
                     <div class="title-text">PROFILE PICTURE</div>
@@ -31,6 +31,9 @@
                                 <label for="upload-photo-button" class="placeholder">Upload Profile Photo</label>
                                 <input type="file" id="upload-photo-button" name="profile-photo" accept="image/*" />
                                 <img class="add-profile-photo" alt="Uploaded Photo" src="images/blank-profile-picture.png" />
+                                <div id="error-text-avatar" class="error-text hidden">
+                                    Profile picture format invalid.
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -56,7 +59,7 @@
                             <label for="u-name" class="placeholder">Username</label>
                             <input type="text" id="u-name" name="u-name" />
                             &nbsp;
-                            <div id="error-username-signup" class="error-text hidden">
+                            <div id="error-text-uname" class="error-text hidden">
                                 Username invalid. Only word characters allowed.
                             </div>
                         </div>
@@ -70,7 +73,7 @@
                             <label for="email" class="placeholder">Email</label>
                             <input type="email" id="email" name="email" />
                             &nbsp;
-                            <div id="error-email" class="error-text hidden">
+                            <div id="error-text-email" class="error-text hidden">
                                 Email invalid.
                             </div>
                         </div>
@@ -84,7 +87,7 @@
                             <label for="p-word" class="placeholder">Password</label>
                             <input type="password" id="p-word" name="p-word" />
                             &nbsp;
-                            <div id="error-pword-signup" class="error-text hidden">
+                            <div id="error-text-pword" class="error-text hidden">
                                 Password invalid. Must be 6 characters long and contain at least one non-letter character.
                             </div>
                         </div>
@@ -93,17 +96,14 @@
                             <label for="confirm-pword" class="placeholder">Re-enter Password</label>
                             <input type="password" id="confirm-pword" name="confirm-pword" />
                             &nbsp;
-                            <div id="error-cpword" class="error-text hidden">
+                            <div id="error-text-cpword" class="error-text hidden">
                                 Password does not match.
                             </div>
                         </div>
                         <div class="placeholder-container">
                             <input type="submit" id="signup" class="button-style" name="signup" value="Signup" />
                         </div>
-                        
-    
                     </div>
-                    
                 </div> 
             </form>
         </div>
