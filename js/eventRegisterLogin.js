@@ -1,3 +1,10 @@
+// Max Krishka-Pachal
+// 200526378
+// October 30 2024
+// CS 215
+// Assignment 3
+// eventRegisterLogin.js
+
 // email
 let email = document.getElementById("email");
 email.addEventListener("blur", emailHandler);
