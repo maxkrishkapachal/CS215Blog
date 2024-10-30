@@ -1,6 +1,7 @@
 // constants
 const TITLE_MAX = 100;
 const CONTENT_MAX = 2000;
+const COMMENT_MAX = 1000;
 const TEXT_MIN = 1;
 
 // validate email
@@ -64,6 +65,13 @@ function validatePostTitle(title){
 // validate post content
 function validatePostContent(content){
     if(content.length >= TEXT_MIN && content.length <= CONTENT_MAX)
+        return true;
+    else
+        return false;
+}
+
+function validateComment(comment){
+    if(comment.length >= TEXT_MIN && comment.length <= CONTENT_MAX)
         return true;
     else
         return false;
@@ -222,13 +230,35 @@ function validatePost(event){
         event.preventDefault();
 }
 
+// validate comment
+function validatePostComment(event){
+    let comment = document.getElementById("leave-comment");
+
+    let formIsValid = true;
+
+    if(!validateComment(comment.value)){
+        comment.classList.add("error-input");
+        let errorMessage = document.getElementById("error-text-comment");
+        errorMessage.classList.remove("hidden");
+        formIsValid = false;
+    }
+    else {
+        comment.classList.remove("error-input");
+        let errorMessage = document.getElementById("error-text-comment");
+        errorMessage.classList.add("hidden");
+    }
+
+    if(!formIsValid)
+        event.preventDefault();
+}
+
 
 // email handler
 function emailHandler(event){
     let email = event.target;
     let errorMessage = document.getElementById("error-text-email");
 
-    if(!validateEmail(email.value)){
+    if(!validateEmail(email.value.trim())){
         email.classList.add("error-input");
         errorMessage.classList.remove("hidden");
     }
@@ -243,7 +273,7 @@ function usernameHandler(event){
     let username = event.target;
     let errorMessage = document.getElementById("error-text-uname");
 
-    if(!validateUsername(username.value)){
+    if(!validateUsername(username.value.trim())){
         username.classList.add("error-input");
         errorMessage.classList.remove("hidden");
     }
@@ -258,7 +288,7 @@ function passwordHandler(event){
     let password = event.target;
     let errorMessage = document.getElementById("error-text-pword");
 
-    if(!validatePassword(password.value)){
+    if(!validatePassword(password.value.trim())){
         password.classList.add("error-input");
         errorMessage.classList.remove("hidden");
     }
@@ -273,7 +303,7 @@ function cPasswordHandler(event){
     let cpword = event.target;
     let errorMessage = document.getElementById("error-text-cpword");
 
-    if(!validateCPassword(cpword.value)){
+    if(!validateCPassword(cpword.value.trim())){
         cpword.classList.add("error-input");
         errorMessage.classList.remove("hidden");
     }
@@ -303,7 +333,7 @@ function postTitleHandler(event){
     let title = event.target;
     let errorMessage = document.getElementById("error-text-title");
 
-    if(!validatePostTitle(title.value)){
+    if(!validatePostTitle(title.value.trim())){
         title.classList.add("error-input");
         errorMessage.classList.remove("hidden");
     }
@@ -324,6 +354,20 @@ function postContentHandler(event){
     }
     else {
         content.classList.remove("error-input");
+        errorMessage.classList.add("hidden");
+    }
+}
+
+function commentHandler(event){
+    let comment = event.target;
+    let errorMessage = document.getElementById("error-text-comment");
+
+    if(!validateComment(comment.value.trim())){
+        comment.classList.add("error-input");
+        errorMessage.classList.remove("hidden");
+    }
+    else {
+        comment.classList.remove("error-input");
         errorMessage.classList.add("hidden");
     }
 }

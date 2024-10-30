@@ -15,6 +15,7 @@ viewPost.html
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="description" content="the page to view a specific post" />
         <link rel="stylesheet" type="text/css" href="css/styles.css" />
+        <script src="js/eventHandlers.js"></script>
     </head>
 
     <body>
@@ -170,11 +171,14 @@ viewPost.html
                 <form class="comment-form" action="" method="post">
                     <div class="comment-form-container">
                         <input type="text" id="leave-comment" name="leave-comment" />
+                        <div id="error-text-comment" class="error-text hidden">
+                            Must contain 1 - 1000 characters.
+                        </div>
                         <input type="submit" id="post-comment" class="button-style" name="post-comment" value="Post" />
                     </div>
                 </form>
-
             </div>
         </div>
+        <script src="js/eventRegisterComment.js"></script>
     </body>
 </html>
