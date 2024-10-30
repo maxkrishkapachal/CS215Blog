@@ -6,6 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="description" content="The page to create a new post" />
         <link rel="stylesheet" type="text/css" href="css/styles.css" />
+        <script src="js/eventHandlers.js"></script>
     </head>
 
     <body>
@@ -34,16 +35,22 @@
             <div id="create-post">
                 <div class="title-text">Create your new post:</div>
                 
-                <form class="create-post-form" action="homePage.html" method="post">
+                <form id="create-form" class="create-post-form" action="homePage.html" method="post">
                     <!-- Label and Input for the post title-->
                     <div class="placeholder-container">
                         <label for="post-title" class="placeholder">Post Title:</label>           
                         <input type="text" id="post-title" name="post-title" />
+                        <div id="error-text-title" class="error-text hidden">
+                            Must contain 1 - 100 characters.
+                        </div>
                     </div>
                     <!-- Label and Input for the post text-->
                     <div class="placeholder-container">
                         <label for="post-text" class="placeholder">Post Body:</label>           
                         <textarea rows="5" cols="50" id="post-text" name="post-text"> </textarea>
+                        <div id="error-text-content" class="error-text hidden">
+                            Must contain 1 - 2000 characters.
+                        </div>
                     </div>
 
                     <!-- Label and Input for photo uploading-->
@@ -52,11 +59,12 @@
                         <input type="file" id="upload-photo-button" name="profile-photo" accept="image/*" />
                         <img class="add-post-photo" alt="Uploaded Photo" src="images/camping15.jpg" />
                     </div>
-                    <div>
+                    <div class="placeholder-container">
                         <input type="submit" class="post-button-style" id="post" name="post-button" value="Post" />
                     </div>
                 </form>
             </div>
         </div>
+        <script src="js/eventRegisterCreatePost.js"></script>
     </body>
 </html>

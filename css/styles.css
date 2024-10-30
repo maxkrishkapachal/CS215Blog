@@ -82,6 +82,10 @@ body {
     text-align: center;
 }
 
+textarea, input[type="text"] {
+    font-family: 'LS', sans-serif;
+}
+
 /******************/
 /* HEADER CONTENT */
 /******************/
