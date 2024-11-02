@@ -1,0 +1,80 @@
+CS 215 Web and Database Programming
+Assignment 3
+
+Part A was completed by Max. Part B was completed by Dmytro.
+
+Group 25:
+Maximilian Krishka-Pachal 200526378
+URL: http://www.webdev.cs.uregina.ca/~mjk991/assignment3/index.html
+
+Dmytro Stepaniuk 200426341
+URL: http://www.webdev.cs.uregina.ca/~dsj361/A3/index.html
+
+
+Submission Details:
+1. index.html - created by Max
+    This is the front page of our forum, BaseCamp, where the user can login or sign up. It also 
+    shows the top five most recent posts, but the user is unable to click on them unless they're 
+    logged in. Currently it has placeholder data to show what it would look like.
+	
+2. homePage.html - created by Max
+    This is the front page of our forum once the user is logged in. It shows the top twenty most
+    recent posts from all users. Currently it has placeholder data to show what it would look like.
+	
+3. signup.html - created by Dmytro
+	This is the page where the user can sign up to create an account. It asks for first name, last
+    name, email, date of birth, avatar, username, password. Clicking signup will take them to the
+    logged in page.
+
+4. managePost.html - created by Dmytro
+    This is the page to manage all of the current user's posts. They are listed in their entirety 
+    with all comments from posts attached. The user can still open these posts in the post view.
+    Currently it has placeholder data to show what it would look like.
+	
+5. createPost.html - created by Dmytro
+    This is the page to create a new post. It allows for a post title, a post body, and an image.
+    There is a default image set up already which can be swapped out.
+	
+6. viewPost.html - created by Max
+    This is the page to view a post in its entirety. It can be accessed by clicking on the title
+    of any post. It shows the entire post, plus the comments on it, and there is a bar at the bottom
+    of the page to leave a comment. Currently, all posts lead to the same example placeholder post.
+
+7. js/eventHandlers.js - created by Max and Dmytro
+    This is the collection of all validators and handlers for the signup page input, the login input,
+    the post creation input, and the comment input. It checks that all input meets the proper
+    requirements. It also displays and hides errors messages when requirements are not met. The 
+    character counter is also in this file which tells the user how many characters they have left for
+    comments, post titles, and post bodies.
+
+8. js/eventRegisterComment.js
+    These are the event listeners for posting a comment. It creates listeners for the comment box
+    character count, submit button, and input selection.
+
+9. js/eventRegisterCreatePost.js
+    These are the event listeners for creating a post. It creates listeners for the title
+    character count, post body character count, submit button, and input selection.
+
+10. js/eventRegisterLogin.js
+    These are the event listeners for logging in. It creates listeners for the email input selection,
+    password input selection, and submit button.
+
+11. js/eventRegisterSignup.js
+    These are the event listeners for signing up. It creates listeners for the email input, username
+    input, password input, password confirmation input, avatar photo input, and submit button.
+
+12. css/styles.css - created by Max and Dmytro
+    This includes all the styling for each page, split up by function. There are sections for the
+    profile, new posts, individual preview posts, full posts, comments, all forms, and more. It
+    also includes the fonts. *Has been updated to include styling for the error messages and the 
+    character count.
+
+13. fonts/
+    All the fonts used in the code are stored in this folder. 
+
+14. images/
+    All images used including logo, placeholder profile images, placeholder post photos, and
+    sign up page default image.
+
+15. README.md
+    This is the read me for the entire project with milestones.
