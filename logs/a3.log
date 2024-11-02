@@ -15,7 +15,8 @@ Submission Details:
 1. index.html - created by Max
     This is the front page of our forum, BaseCamp, where the user can login or sign up. It also 
     shows the top five most recent posts, but the user is unable to click on them unless they're 
-    logged in. Currently it has placeholder data to show what it would look like.
+    logged in. Currently it has placeholder data to show what it would look like. The login
+    boxes now include error checking with error messages for correct email and password format.
 	
 2. homePage.html - created by Max
     This is the front page of our forum once the user is logged in. It shows the top twenty most
@@ -24,7 +25,8 @@ Submission Details:
 3. signup.html - created by Dmytro
 	This is the page where the user can sign up to create an account. It asks for first name, last
     name, email, date of birth, avatar, username, password. Clicking signup will take them to the
-    logged in page.
+    logged in page. The email, username, password, password confirmation, and avatar boxes now include
+    error checking with error messages for correct formatting.
 
 4. managePost.html - created by Dmytro
     This is the page to manage all of the current user's posts. They are listed in their entirety 
@@ -33,12 +35,16 @@ Submission Details:
 	
 5. createPost.html - created by Dmytro
     This is the page to create a new post. It allows for a post title, a post body, and an image.
-    There is a default image set up already which can be swapped out.
+    There is a default image set up already which can be swapped out. The title and post body
+    boxes now include error checking with error messages for correct character counts, and 
+    character counters for user convenience. 
 	
 6. viewPost.html - created by Max
     This is the page to view a post in its entirety. It can be accessed by clicking on the title
     of any post. It shows the entire post, plus the comments on it, and there is a bar at the bottom
     of the page to leave a comment. Currently, all posts lead to the same example placeholder post.
+    Comment boxes now include error checking with error messages for correct character counts, and
+    character counters for user convenience.
 
 7. js/eventHandlers.js - created by Max and Dmytro
     This is the collection of all validators and handlers for the signup page input, the login input,
