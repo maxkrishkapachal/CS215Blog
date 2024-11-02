@@ -18,5 +18,9 @@ let form = document.getElementById("create-form");
 form.addEventListener("submit", validatePost);
 
 // dynamic counter
+let blogPostTitle = document.getElementById("post-title");
+blogPostTitle.addEventListener("input", (event) => charCounter(event, 100));
+
+// dynamic counter for body text
 let blogPostTextarea = document.getElementById("post-text");
 blogPostTextarea.addEventListener("input", (event) => charCounter(event, 2000));
