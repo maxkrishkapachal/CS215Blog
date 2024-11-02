@@ -16,3 +16,7 @@ content.addEventListener("blur", postContentHandler);
 // submit button
 let form = document.getElementById("create-form");
 form.addEventListener("submit", validatePost);
+
+// dynamic counter
+let blogPostTextarea = document.getElementById("post-text");
+blogPostTextarea.addEventListener("input", (event) => charCounter(event, 2000));

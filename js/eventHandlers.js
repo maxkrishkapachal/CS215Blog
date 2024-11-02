@@ -78,12 +78,35 @@ function validatePostContent(content){
 }
 
 function validateComment(comment){
-    if(comment.length >= TEXT_MIN && comment.length <= CONTENT_MAX)
+    if(comment.length >= TEXT_MIN && comment.length <= COMMENT_MAX)
         return true;
     else
         return false;
 }
 
+// validation of characters count and limit for text of the input
+function charCounter(event, limit) {
+    const textarea = event.target;
+    let counterElement = textarea.nextElementSibling;
+  
+    if (!counterElement || !counterElement.classList.contains("char-counter")) {
+      counterElement = document.createElement("div");
+      counterElement.classList.add("char-counter");
+      counterElement.style.marginTop = "5px";
+      textarea.parentNode.insertBefore(counterElement, textarea.nextSibling);
+    }
+  
+    const charCount = textarea.value.trim().length;
+    const charsLeft = limit - charCount;
+  
+    if (charCount <= limit) {
+      counterElement.innerHTML = `${charCount} / ${limit} characters used. (${charsLeft} characters left)`;
+      counterElement.style.color = "black";
+    } else {
+      counterElement.innerHTML = `Character limit exceeded by ${charCount - limit} characters.`;
+      counterElement.style.color = "red";
+    }
+  }
 
 function validateSignup(event){
     // email

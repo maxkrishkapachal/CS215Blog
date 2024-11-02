@@ -170,15 +170,17 @@ viewPost.html
                 <!-- where the user can leave their own comment -->
                 <form class="comment-form" action="" method="post">
                     <div class="comment-form-container">
-                        <input type="text" id="leave-comment" name="leave-comment" />
+                        <textarea rows="4" cols="50" id="leave-comment" name="leave-comment" ></textarea>
                         <div id="error-text-comment" class="error-text hidden">
                             Must contain 1 - 1000 characters.
                         </div>
                         <input type="submit" id="post-comment" class="button-style" name="post-comment" value="Post" />
                     </div>
                 </form>
+                <br><br><br>
             </div>
         </div>
+        
         <script src="js/eventRegisterComment.js" type="text/javascript"></script>
     </body>
 </html>
