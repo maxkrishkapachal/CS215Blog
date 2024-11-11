@@ -1,3 +1,4 @@
+// Part B
 CREATE TABLE users (
     user_id         INT             NOT NULL AUTO_INCREMENT,
     email           VARCHAR(50)     NOT NULL,
@@ -53,25 +54,25 @@ CREATE TABLE commentvote (
 );
 
 
-INSERT INTO users (email, first_name, last_name, username, password, dob, profile_photo)
+1. INSERT INTO users (email, first_name, last_name, username, password, dob, profile_photo)
 VALUES
 ("mjk991@uregina.ca", "Max", "Krishka-Pachal", "mjk991", "goodPassword", "2000-01-01", "maxphoto.jpg"),
 ("dsj361@uregina.ca", "Dmytro", "Stepaniuk", "dsj361", "passwordThatIsGood", "2000-01-01", "dmytrophoto.jpg"); 
 
 
-INSERT INTO post (user_id, timestamp, title, content, post_image)
+2. INSERT INTO post (user_id, timestamp, title, content, post_image)
 VALUES
 (1, "2022-06-10 8:30:00", "Camping is my favourite", "It's the best! Everyone should try camping!", "coolCampingPhoto.jpg"),
 (2, "2024-07-24 2:47:35", "Camping snacks??", "I need a good snack that I can fit in my backpack. There's already no room in there!", "defaultPhoto.jpg");
 
 
-INSERT INTO comment (post_id, user_id, timestamp, content)
+3. INSERT INTO comment (post_id, user_id, timestamp, content)
 VALUES
 (1, 2, "2023-01-03 10:02:50", "I totally agree."),
 (2, 1, "2024-11-23 15:22:01", "That's such a good idea! I'll have to try that next time.");
 
 
-INSERT INTO postvote (post_id, user_id, updown)
+4. INSERT INTO postvote (post_id, user_id, updown)
 VALUES
 (1, 2, TRUE),
 (1, 1, FALSE);
