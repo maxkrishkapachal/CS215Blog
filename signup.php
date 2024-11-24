@@ -88,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($errors)) {
 
         $dateformat = date("Y-m-d", strtotime($dob));
-        $query = "INSERT INTO users (first_name, last_name, email, username, password, dob, avatar_url) VALUES ('$firstName', '$lastName', '$email', '$username', '$password', '$dateformat', 'avatar_stub')";
+        $query = "INSERT INTO users (first_name, last_name, email, username, password, dob, profile_photo) VALUES ('$firstName', '$lastName', '$email', '$username', '$password', '$dateformat', 'avatar_stub')";
         
         $result = $db->exec($query);
 
@@ -141,7 +141,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Check if $uploadOk still TRUE after attempt to move
             if (!$uploadOk)
             {
-                $query = "DELETE FROM users WHERE avatar_url='avatar_stub'";
+                $query = "DELETE FROM users WHERE profile_photo='avatar_stub'";
                 $result = $db->exec($query);
 
                 if (!$result) {
@@ -150,11 +150,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $db = null;
             } else {
                 $userid = $db->lastInsertId();
-                $query =  "UPDATE users SET avatar_url='$target_file' WHERE user_id=$userid";
+                $query =  "UPDATE users SET profile_photo='$target_file' WHERE user_id=$userid";
                 $result = $db->exec($query);
 
                 if (!$result) {
-                    $errors["Database Error:"] = "could not update avatar_url";
+                    $errors["Database Error:"] = "could not update profile photo";
                 } else {
                     $db = null;
                     header("Location: index.php");
@@ -197,7 +197,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <a href="index.php" class="button-style">Login</a>
                 </div>
             </header>
-            <form id="signup-form" class="signup-form-container" action="" method="post">
+            <form id="signup-form" class="signup-form-container" action="" enctype="multipart/form-data" method="post">
                 <div id="profile" class="profile-signup">
                     <!-- where the user can login or sign up - becomes the profile when logged in -->
                     <div class="title-text">PROFILE PICTURE</div>
