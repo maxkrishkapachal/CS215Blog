@@ -11,7 +11,7 @@ viewPost.html
 <html>
 
     <head>
-        <title>View Post</title>
+        <title>BASECAMP - View Post</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="description" content="the page to view a specific post" />
         <link rel="stylesheet" type="text/css" href="css/styles.css" />

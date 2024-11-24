@@ -178,7 +178,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 
     <head>
-        <title>Signup</title>
+        <title>BASECAMP - Signup</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="description" content="The page to sign up for the forum" />
         <link rel="stylesheet" type="text/css" href="css/styles.css" />

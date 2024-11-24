@@ -11,7 +11,7 @@ index.html
 <html>
 
     <head>
-        <title>Main Page Before Login</title>
+        <title>BASECAMP - Login</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="description" content="The front page after the user has logged in with profile on the sidebar" />
         <link rel="stylesheet" type="text/css" href="css/styles.css" />

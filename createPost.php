@@ -2,7 +2,7 @@
 <html>
 
     <head>
-        <title>Create Post</title>
+        <title>BASECAMP - Create Post</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="description" content="The page to create a new post" />
         <link rel="stylesheet" type="text/css" href="css/styles.css" />

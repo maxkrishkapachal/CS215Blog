@@ -2,7 +2,7 @@
 <html>
 
     <head>
-        <title>Post Management</title>
+        <title>BASECAMP - Manage Posts</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="description" content="The page where one can manage the posts they've made" />
         <link rel="stylesheet" type="text/css" href="css/styles.css" />

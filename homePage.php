@@ -11,7 +11,7 @@ homePage.html
 <html>
 
     <head>
-        <title>Main Page After Login</title>
+        <title>BASECAMP - Home Page</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="description" content="the front page of basecamp before the user has logged in" />
         <link rel="stylesheet" type="text/css" href="css/styles.css" />
