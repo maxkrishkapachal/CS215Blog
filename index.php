@@ -28,15 +28,15 @@ index.html
                 </div>
                 <div id="header-button-container">
                     <!-- login and signup buttons in header -->
-                    <a href="signup.html" class="button-style">Signup</a>
-                    <a href="index.html" class="button-style">Login</a>
+                    <a href="signup.php" class="button-style">Signup</a>
+                    <a href="index.php" class="button-style">Login</a>
                 </div>
             </header>
 
             <div id="profile" class="profile-else">
                 <!-- where the user can login or sign up - becomes the profile when logged in -->
                 <div class="title-text">LOGIN</div>
-                <form id="login-form" class="auth-form" action="homePage.html" method="post">
+                <form id="login-form" class="auth-form" action="homePage.php" method="post">
                     <div class="form-input-grid">
                         <!-- username label and input -->
                         <div class="placeholder-container">
@@ -63,7 +63,7 @@ index.html
                 <div class="button-grid"> 
                     <!-- for signing up -->
                     <label class="title-text">NEW HERE?</label>
-                    <a href="signup.html" class="button-style">Signup</a>
+                    <a href="signup.php" class="button-style">Signup</a>
                 </div>
             </div>
 

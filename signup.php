@@ -193,11 +193,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div id="company-name">BASECAMP</div>
                 </div>
                 <div id="header-button-container">
-                    <a href="signup.html" class="button-style">Signup</a>
-                    <a href="index.html" class="button-style">Login</a>
+                    <a href="signup.php" class="button-style">Signup</a>
+                    <a href="index.php" class="button-style">Login</a>
                 </div>
             </header>
-            <form id="signup-form" class="signup-form-container" action="homePage.html" method="post">
+            <form id="signup-form" class="signup-form-container" action="homePage.php" method="post">
                 <div id="profile" class="profile-signup">
                     <!-- where the user can login or sign up - becomes the profile when logged in -->
                     <div class="title-text">PROFILE PICTURE</div>

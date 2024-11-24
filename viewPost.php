@@ -28,7 +28,7 @@ viewPost.html
                 </div>
                 <div id="header-button-container">
                     <!-- logout button goes here -->
-                    <a href="index.html" class="button-style">Logout</a>
+                    <a href="index.php" class="button-style">Logout</a>
                 </div>
             </header>
 
@@ -39,9 +39,9 @@ viewPost.html
                 <!-- profile options -->
                 <div class="button-grid"> 
                     <img src="images/red-netflix-profile.jpg" alt="red netflix profile picture" id="profile-picture" />
-                    <a href="homePage.html" class="button-style">DISCOVER</a>
-                    <a href="createPost.html" class="button-style">CREATE</a>
-                    <a href="managePost.html" class="button-style">MANAGE</a>
+                    <a href="homePage.php" class="button-style">DISCOVER</a>
+                    <a href="createPost.php" class="button-style">CREATE</a>
+                    <a href="managePost.php" class="button-style">MANAGE</a>
                 </div>
             </div>
 

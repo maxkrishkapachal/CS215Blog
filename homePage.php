@@ -27,7 +27,7 @@ homePage.html
                 </div>
                 <div id="header-button-container">
                     <!-- logout button -->
-                    <a href="index.html" class="button-style">Logout</a>
+                    <a href="index.php" class="button-style">Logout</a>
                 </div>
             </header>
 
@@ -38,9 +38,9 @@ homePage.html
                 <!-- profile options -->
                 <div class="button-grid"> 
                     <img src="images/red-netflix-profile.jpg" alt="red netflix profile picture" id="profile-picture" />
-                    <a href="homePage.html" class="button-style">DISCOVER</a>
-                    <a href="createPost.html" class="button-style">CREATE</a>
-                    <a href="managePost.html" class="button-style">MANAGE</a>
+                    <a href="homePage.php" class="button-style">DISCOVER</a>
+                    <a href="createPost.php" class="button-style">CREATE</a>
+                    <a href="managePost.php" class="button-style">MANAGE</a>
                 </div>
             </div>
 
@@ -55,7 +55,7 @@ homePage.html
                     <div class="post-username">CAMPFIRECRAFTER</div>
                     <div class="post-time">MARCH 22 2024 23:31</div>
                     <div class="post-title">
-                        <a href="viewPost.html">The Art of Campfire Cooking</a>
+                        <a href="viewPost.php">The Art of Campfire Cooking</a>
                     </div>
                     <div class="post-content-preview">
                         There's something magical about cooking over an open fire 
@@ -81,7 +81,7 @@ homePage.html
                     <div class="post-username">TRAILBLAZER_ADVENTURES</div>
                     <div class="post-time">SEPTEMBER 26 2024 12:47</div>
                     <div class="post-title">
-                        <a href="viewPost.html">Campfire Stories</a>
+                        <a href="viewPost.php">Campfire Stories</a>
                     </div>
                     <div class="post-content-preview">
                         Hey everyone! I just got back from a fantastic weekend 
@@ -107,7 +107,7 @@ homePage.html
                     <div class="post-username">TENT_TALES</div>
                     <div class="post-time">SEPTEMBER 28 2024 11:45</div>
                     <div class="post-title">
-                        <a href="viewPost.html">camping snacks</a>
+                        <a href="viewPost.php">camping snacks</a>
                     </div>
                     <div class="post-content-preview">
                         Hey fellow campers! I just got back from a camping trip, 
@@ -134,7 +134,7 @@ homePage.html
                     <div class="post-username">IFRICKINGLOVECAMPING</div>
                     <div class="post-time">SEPTEMBER 28 2024 14:08</div>
                     <div class="post-title">
-                        <a href="viewPost.html">Camping with pets?</a>
+                        <a href="viewPost.php">Camping with pets?</a>
                     </div>
                     <div class="post-content-preview">
                         Has anyone here gone camping with their furry friends? 
@@ -159,7 +159,7 @@ homePage.html
                     <div class="post-username">FORESTEXPLORER22</div>
                     <div class="post-time">SEPTEMBER 30 2024 9:32</div>
                     <div class="post-title">
-                        <a href="viewPost.html">Best Camping Locations!</a>
+                        <a href="viewPost.php">Best Camping Locations!</a>
                     </div>
                     <div class="post-content-preview">
                         I’m looking for new camping spots to explore! 
@@ -187,7 +187,7 @@ homePage.html
                     <div class="post-username">CAMPCHASER</div>
                     <div class="post-time">OCTOBER 1 2024 8:32</div>
                     <div class="post-title">
-                        <a href="viewPost.html">Share your scariest campfire story</a>
+                        <a href="viewPost.php">Share your scariest campfire story</a>
                     </div>
                     <div class="post-content-preview">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
@@ -214,7 +214,7 @@ homePage.html
                     <div class="post-username">FORESTFOOTPRINTS</div>
                     <div class="post-time">OCTOBER 1 16:22</div>
                     <div class="post-title">
-                        <a href="viewPost.html">My tent just collapsed. what now?</a>
+                        <a href="viewPost.php">My tent just collapsed. what now?</a>
                     </div>
                     <div class="post-content-preview">
                         Curabitur eget pretium tellus. Pellentesque vulputate 
@@ -236,7 +236,7 @@ homePage.html
                     <div class="post-username">BACKPACK_ADVENTURER_35</div>
                     <div class="post-time">OCTOBER 1 2024 19:20</div>
                     <div class="post-title">
-                        <a href="viewPost.html">accidentally started a fire in my tent!</a>
+                        <a href="viewPost.php">accidentally started a fire in my tent!</a>
                     </div>
                     <div class="post-content-preview">
                         Aenean augue diam, aliquet sit amet convallis ut, 
@@ -263,7 +263,7 @@ homePage.html
                     <div class="post-username">TRAIL_BLAZE</div>
                     <div class="post-time">OCTOBER 1 2024 21:58</div>
                     <div class="post-title">
-                        <a href="viewPost.html">I think I just saw a ghost on the trail...</a>
+                        <a href="viewPost.php">I think I just saw a ghost on the trail...</a>
                     </div>
                     <div class="post-content-preview">
                         Sed feugiat ipsum ut neque posuere mattis ut viverra 
@@ -288,7 +288,7 @@ homePage.html
                     <div class="post-username">STARGAZERSAM</div>
                     <div class="post-time">OCTOBER 2 2024 2:34</div>
                     <div class="post-title">
-                        <a href="viewPost.html">Do I need a sleeping pad?</a>
+                        <a href="viewPost.php">Do I need a sleeping pad?</a>
                     </div>
                     <div class="post-content-preview">
                         Lorem ipsum dolor sit amet, consectetur adipiscing 
@@ -313,7 +313,7 @@ homePage.html
                     <div class="post-username">TENTGURU</div>
                     <div class="post-time">OCTOBER 2 2024 4:55</div>
                     <div class="post-title">
-                        <a href="viewPost.html">Why do marshmallows always burn on me?</a>
+                        <a href="viewPost.php">Why do marshmallows always burn on me?</a>
                     </div>
                     <div class="post-content-preview">
                         Sed tempus neque quam, ut bibendum dui maximus nec. 
@@ -339,7 +339,7 @@ homePage.html
                     <div class="post-username">PATHSEEKER23</div>
                     <div class="post-time">OCTOBER 2 2024 12:12</div>
                     <div class="post-title">
-                        <a href="viewPost.html">First time camper - tips for staying warm?</a>
+                        <a href="viewPost.php">First time camper - tips for staying warm?</a>
                     </div>
                     <div class="post-content-preview">
                         Morbi sed elementum risus. Sed fermentum commodo 
@@ -361,7 +361,7 @@ homePage.html
                     <div class="post-username">WOODS_WANDERER</div>
                     <div class="post-time">OCTOBER 2 2024 13:15</div>
                     <div class="post-title">
-                        <a href="viewPost.html">Made a new contraption to keep bears out of my food!</a>
+                        <a href="viewPost.php">Made a new contraption to keep bears out of my food!</a>
                     </div>
                     <div class="post-content-preview">
                         Nam varius urna vel dignissim ultricies. 
@@ -389,7 +389,7 @@ homePage.html
                     <div class="post-username">FIREWOOD_FANATIC</div>
                     <div class="post-time">OCTOBER 2 2024 15:35</div>
                     <div class="post-title">
-                        <a href="viewPost.html">Is glamping real camping? Discussion:</a>
+                        <a href="viewPost.php">Is glamping real camping? Discussion:</a>
                     </div>
                     <div class="post-content-preview">
                         Vivamus quis nibh vel mauris pharetra commodo a nec 
@@ -414,7 +414,7 @@ homePage.html
                     <div class="post-username">CAMP_SITE_CRAZE</div>
                     <div class="post-time">OCTOBER 2 2024 16:01</div>
                     <div class="post-title">
-                        <a href="viewPost.html">How I make full meals in the middle of the woods!</a>
+                        <a href="viewPost.php">How I make full meals in the middle of the woods!</a>
                     </div>
                     <div class="post-content-preview">
                         Aliquam tincidunt neque pretium dui semper, et dictum quam 
@@ -436,7 +436,7 @@ homePage.html
                     <div class="post-username">PACKITPRO</div>
                     <div class="post-time">OCTOBER 2 2024 23:53</div>
                     <div class="post-title">
-                        <a href="viewPost.html">Forgot to pack socks. Had to improvise.</a>
+                        <a href="viewPost.php">Forgot to pack socks. Had to improvise.</a>
                     </div>
                     <div class="post-content-preview">
                         Donec egestas, erat et rutrum dictum, est ante ornare odio, 
@@ -457,7 +457,7 @@ homePage.html
                     <div class="post-username">HAMMOCK_HANNAH</div>
                     <div class="post-time">OCTOBER 3 2024 6:16</div>
                     <div class="post-title">
-                        <a href="viewPost.html">Should I get walking sticks?</a>
+                        <a href="viewPost.php">Should I get walking sticks?</a>
                     </div>
                     <div class="post-content-preview">
                         Cras euismod sollicitudin nibh in euismod. Sed tincidunt elit 
@@ -479,7 +479,7 @@ homePage.html
                     <div class="post-username">OUTDOOR_CHEF</div>
                     <div class="post-time">OCTOBER 3 2024 10:22</div>
                     <div class="post-title">
-                        <a href="viewPost.html">Check out my fun campfire recipes!</a>
+                        <a href="viewPost.php">Check out my fun campfire recipes!</a>
                     </div>
                     <div class="post-content-preview">
                         Nullam ac maximus ipsum, at pharetra lacus. Phasellus aliquam 
@@ -502,7 +502,7 @@ homePage.html
                     <div class="post-username">WILDFLOWER_GIRL</div>
                     <div class="post-time">OCTOBER 3 2024 16:45</div>
                     <div class="post-title">
-                        <a href="viewPost.html">First time camping in the rockies! Totally worth it.</a>
+                        <a href="viewPost.php">First time camping in the rockies! Totally worth it.</a>
                     </div>
                     <div class="post-content-preview">
                         Donec imperdiet tortor non dictum interdum. Maecenas dignissim 
@@ -525,7 +525,7 @@ homePage.html
                     <div class="post-username">SMORE_MASTER</div>
                     <div class="post-time">OCTOBER 3 2024 22:54</div>
                     <div class="post-title">
-                        <a href="viewPost.html">Anyone got an extra flashlight?</a>
+                        <a href="viewPost.php">Anyone got an extra flashlight?</a>
                     </div>
                     <div class="post-content-preview">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. 

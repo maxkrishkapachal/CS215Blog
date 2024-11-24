@@ -17,7 +17,7 @@
                     <div id="company-name">BASECAMP</div>
                 </div>
                 <div id="header-button-container">
-                    <a href="index.html" class="button-style">Logout</a>
+                    <a href="index.php" class="button-style">Logout</a>
                 </div>
             </header>
 
@@ -26,16 +26,16 @@
                 
                 <div class="button-grid"> 
                     <img src="images/red-netflix-profile.jpg" alt="red netflix profile picture" id="profile-picture" />
-                    <a href="homePage.html" class="button-style">DISCOVER</a>
-                    <a href="createPost.html" class="button-style">CREATE</a>
-                    <a href="managePost.html" class="button-style">MANAGE</a>
+                    <a href="homePage.php" class="button-style">DISCOVER</a>
+                    <a href="createPost.php" class="button-style">CREATE</a>
+                    <a href="managePost.php" class="button-style">MANAGE</a>
                 </div>
             </div>
 
             <div id="create-post">
                 <div class="title-text">Create your new post:</div>
                 
-                <form id="create-form" class="create-post-form" action="homePage.html" method="post">
+                <form id="create-form" class="create-post-form" action="homePage.php" method="post">
                     <!-- Label and Input for the post title-->
                     <div class="placeholder-container">
                         <label for="post-title" class="placeholder">Post Title:</label>           
