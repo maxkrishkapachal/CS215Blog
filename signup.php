@@ -24,35 +24,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // If we got here through a POST submitted form, process the form
 
     // Collect and validate form inputs
-    $firstName = test_input($_POST["fname"]);
-    $lastName = test_input($_POST["lname"]);
+    $firstName = test_input($_POST["f-name"]);
+    $lastName = test_input($_POST["l-name"]);
     $email = test_input($_POST["email"]);
-    $username = test_input($_POST["username"]);
-    $password = test_input($_POST["password"]);
+    $username = test_input($_POST["u-name"]);
+    $password = test_input($_POST["p-word"]);
     $dob = test_input($_POST["dob"]);;
     
     // Form Field Regular Expressions
     $nameRegex = "/^[a-zA-Z]+$/";
     $unameRegex = "/^[a-zA-Z0-9_]+$/";
-    $emailRegEx = "/^[a-z0-9]+[.]?[!$#%'*+\/=?^_`{|}~-]*[a-z0-9]+@[a-z]+[.]?[!$%&'*+\/=?^_`{|}~-]*[a-z]+\.[a-z]{2,3}$/";
+    $emailRegex = "/^[a-z0-9]+[.]?[!$#%'*+\/=?^_`{|}~-]*[a-z0-9]+@[a-z]+[.]?[!$%&'*+\/=?^_`{|}~-]*[a-z]+\.[a-z]{2,3}$/";
     $passwordRegex = "/^.{8}$/";
     $dobRegex = "/^\d{4}[-]\d{2}[-]\d{2}$/";
     
     // Validate the form inputs against their Regexes 
     if (!preg_match($nameRegex, $firstName)) {
-        $errors["fname"] = "Invalid First Name";
+        $errors["f-name"] = "Invalid First Name";
     }
     if (!preg_match($nameRegex, $lastName)) {
-        $errors["lname"] = "Invalid Last Name";
+        $errors["l-name"] = "Invalid Last Name";
     }
     if(!preg_match($emailRegex, $email)){
         $errors["email"] = "Invalid Email";
     }
     if (!preg_match($unameRegex, $username)) {
-        $errors["username"] = "Invalid Username";
+        $errors["u-name"] = "Invalid Username";
     }
     if (!preg_match($passwordRegex, $password)) {
-        $errors["password"] = "Invalid Password";
+        $errors["p-word"] = "Invalid Password";
     }
     if (!preg_match($dobRegex, $dob)) {
         $errors["dob"] = "Invalid DOB";
@@ -99,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $uploadOk = TRUE;
         
             // Fetch the image filetype
-            $imageFileType = strtolower(pathinfo($_FILES["profilephoto"]["name"],PATHINFO_EXTENSION));
+            $imageFileType = strtolower(pathinfo($_FILES["profile-photo"]["name"],PATHINFO_EXTENSION));
 
             $userid = $db->lastInsertId();
             echo "This many rows were altered by this query: $result<br />\n";
@@ -109,26 +109,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Check whether the file exists in the uploads directory
             if (file_exists($target_file)) {
-                $errors["profilephoto"] = "Sorry, file already exists. ";
+                $errors["profile-photo"] = "Sorry, file already exists. ";
                 $uploadOk = FALSE;
             }
                 
             // Check whether the file is not too large
-            if ($_FILES["profilephoto"]["size"] > 1000000) {
-                $errors["profilephoto"] = "File is too large. Maximum 1MB. ";
+            if ($_FILES["profile-photo"]["size"] > 1000000) {
+                $errors["profile-photo"] = "File is too large. Maximum 1MB. ";
                 $uploadOk = FALSE;
             }
 
             // Check image file type
             if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
-                $errors["profilephoto"] = "Bad image type. Only JPG, JPEG, PNG & GIF files are allowed. ";
+                $errors["profile-photo"] = "Bad image type. Only JPG, JPEG, PNG & GIF files are allowed. ";
                 $uploadOk = FALSE;
             }
                             
             // Check if $uploadOk still TRUE after validations
             if ($uploadOk) {
                 // Move the user's avatar to the uploads directory and capture the result as $fileStatus.
-                $fileStatus = move_uploaded_file($_FILES["profilephoto"]["tmp_name"], $target_file);
+                $fileStatus = move_uploaded_file($_FILES["profile-photo"]["tmp_name"], $target_file);
 
                 // Check $fileStatus:
                 if (!$fileStatus) {
@@ -197,7 +197,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <a href="index.php" class="button-style">Login</a>
                 </div>
             </header>
-            <form id="signup-form" class="signup-form-container" action="homePage.php" method="post">
+            <form id="signup-form" class="signup-form-container" action="" method="post">
                 <div id="profile" class="profile-signup">
                     <!-- where the user can login or sign up - becomes the profile when logged in -->
                     <div class="title-text">PROFILE PICTURE</div>
@@ -207,7 +207,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <label for="upload-photo-button" class="placeholder">Upload Profile Photo</label>
                                 <input type="file" id="upload-photo-button" name="profile-photo" accept="image/*" />
                                 <img class="add-profile-photo" alt="Uploaded Photo" src="images/blank-profile-picture.png" />
-                                <div id="error-text-avatar" class="error-text <?= isset($errors['profilephoto'])?'':'hidden' ?>">
+                                <div id="error-text-avatar" class="error-text <?= isset($errors['profile-photo'])?'':'hidden' ?>">
                                     Profile picture invalid. Photo must be less than 1MB and be of type JPEG, JPG, PNG, or GIF.
                                 </div>
                             </div>
@@ -224,7 +224,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="placeholder-container">
                             <label for="f-name" class="placeholder">First Name</label>           
                             <input type="text" id="f-name" name="f-name" />
-                            <div id="error-text-f-name" class="error-text <?= isset($errors['fname'])?'':'hidden' ?>">
+                            <div id="error-text-f-name" class="error-text <?= isset($errors['f-name'])?'':'hidden' ?>">
                                 First name invalid.
                             </div>
                         </div>
@@ -232,7 +232,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="placeholder-container">
                             <label for="l-name" class="placeholder">Last Name</label>           
                             <input type="text" id="l-name" name="l-name" />
-                            <div id="error-text-l-name" class="error-text <?= isset($errors['lname'])?'':'hidden' ?>">
+                            <div id="error-text-l-name" class="error-text <?= isset($errors['l-name'])?'':'hidden' ?>">
                                 Last name invalid.
                             </div>
                         </div>
@@ -240,14 +240,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="placeholder-container">
                             <label for="u-name" class="placeholder">Username</label>
                             <input type="text" id="u-name" name="u-name" />
-                            <div id="error-text-uname" class="error-text <?= isset($errors['username'])?'':'hidden' ?>">
+                            <div id="error-text-uname" class="error-text <?= isset($errors['u-name'])?'':'hidden' ?>">
                                 Username invalid.
                             </div>
                         </div>
                         <!-- Label and Input for the date of birth-->
                         <div class="placeholder-container">
-                            <label for="d-of-b" class="placeholder">Date of Birth</label>
-                            <input type="date" id="d-of-b" name="d-of-b" />
+                            <label for="dob" class="placeholder">Date of Birth</label>
+                            <input type="date" id="dob" name="dob" />
                             <div id="error-text-dob" class="error-text <?= isset($errors['dob'])?'':'hidden' ?>">
                                 Date of birth invalid.
                             </div>
@@ -264,7 +264,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="placeholder-container">
                             <label for="p-word" class="placeholder">Password</label>
                             <input type="password" id="p-word" name="p-word" />
-                            <div id="error-text-pword" class="error-text <?= isset($errors['password'])?'':'hidden' ?>">
+                            <div id="error-text-pword" class="error-text <?= isset($errors['p-word'])?'':'hidden' ?>">
                                 Password invalid. Must be at least 6 characters long and contain at least one non-letter character.
                             </div>
                         </div>
