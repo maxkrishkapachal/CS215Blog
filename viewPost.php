@@ -10,6 +10,13 @@ viewPost.html
 <?php
 require_once("db.php");
 
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data); //encodes
+    return $data;
+}
+
 session_start();
 
 if (!isset($_SESSION['user_id'])) {
@@ -17,6 +24,7 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
+$userId = $_SESSION['user_id'];
 $postId = $_GET['post_id'];
 
 try {
@@ -39,6 +47,34 @@ if (!$post) {
 $commentQuery = "SELECT c.*, u.username, u.profile_photo, (SELECT SUM(updown) FROM vote WHERE comment_id = c.comment_id) as vote_score FROM comment c JOIN users u ON c.user_id = u.user_id WHERE c.post_id = $postId ORDER BY vote_score DESC, c.timestamp ASC";
 $commentStmt = $db->query($commentQuery);
 $comments = $commentStmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // If we got here through a POST submitted form, process the form
+
+    // Collect and validate form inputs
+    $comment = test_input($_POST["content"]);
+    
+    //If there are no errors so far we can try inserting a user     
+    $query = "INSERT INTO comment (post_id, user_id, timestamp, content) VALUES ('$postId', '$userId', NOW(), '$comment')";
+    $result = $db->exec($query);
+
+    if (!$result) {
+        $errors["Database Error:"] = "Failed to insert comment";
+    } 
+    else {
+        header("Location: " . $_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING']);
+        exit();
+    }
+    
+
+    if (!empty($errors)) {
+        foreach($errors as $type => $message) {
+            print("$type: $message \n<br />");
+        }
+    }
+} // submit method was POST
+
 ?>
 
 <!DOCTYPE html>
@@ -104,7 +140,7 @@ $comments = $commentStmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
 
             <?php if (isset($_SESSION['user_id'])): ?>
-                <form class="comment-form" action="addComment.php" method="post">
+                <form class="comment-form" action="" enctype="multipart/form-data" method="post">
                     <input type="hidden" name="post_id" value="<?= $postId ?>">
                     <div class="comment-form-container">
                         <textarea rows="4" cols="50" id="leave-comment" name="content" ></textarea>

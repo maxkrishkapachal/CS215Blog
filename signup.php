@@ -63,7 +63,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     try {
         $db = new PDO($attr, $db_user, $db_pwd, $options);
-        $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         die("PDO Error >> " . $e->getMessage() . "\n<br />");
     }
