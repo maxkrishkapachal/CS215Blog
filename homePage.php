@@ -7,6 +7,24 @@ Assignment 2
 homePage.html
 -->
 
+<?php
+
+session_start();
+require_once("db.php");
+
+// Check whether the user has logged in or not.
+if (!isset($_SESSION["user_id"])) {
+    header("Location: index.php");
+    exit();
+} else {
+    $firstName = $_SESSION["first_name"];
+    $lastName = $_SESSION["last_name"];
+    $userid = $_SESSION["user_id"];
+    $username = $_SESSION["username"];
+    $profilePic = $_SESSION["profile_photo"];
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -32,12 +50,11 @@ homePage.html
             </header>
 
             <div id="profile" class="profile-else">
-                <!-- profile username -->
-                <div class="title-text">USERNAME</div>
-                
-                <!-- profile options -->
-                <div class="button-grid"> 
-                    <img src="images/red-netflix-profile.jpg" alt="red netflix profile picture" id="profile-picture" />
+                <div class="title-text">
+                    <?= htmlspecialchars($_SESSION['username']) ?>
+                </div>
+                <div class="button-grid">
+                    <img src="<?= htmlspecialchars($_SESSION['profile_photo']) ?>" alt="Profile Picture" id="profile-picture" />
                     <a href="homePage.php" class="button-style">DISCOVER</a>
                     <a href="createPost.php" class="button-style">CREATE</a>
                     <a href="managePost.php" class="button-style">MANAGE</a>

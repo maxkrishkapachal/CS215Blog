@@ -11,7 +11,7 @@ email.addEventListener("blur", emailHandler);
 
 // password
 // error-text-pword
-let password = document.getElementById("pword");
+let password = document.getElementById("p-word");
 password.addEventListener("blur", passwordHandler);
 
 // submit button

@@ -96,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div id="company-name">BASECAMP</div>
             </div>
             <div id="header-button-container">
-                <a href="index.php" class="button-style">Logout</a>
+                <a href="logout.php" class="button-style">Logout</a>
             </div>
         </header>
 
