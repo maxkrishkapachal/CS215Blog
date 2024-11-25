@@ -7,6 +7,92 @@ Assignment 2
 index.html
 -->
 
+<?php
+require_once("db.php");
+
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data); //encodes
+    return $data;
+}
+
+
+// Check whether the form was submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    
+    $errors = array();
+    $dataOK = TRUE;
+    
+    // Get and validate the email and password fields
+    $email = test_input($_POST["email"]);
+    $password = test_input($_POST["p-word"]);
+
+    $emailRegex = "/^[a-z0-9]+[.]?[!$#%'*+\/=?^_`{|}~-]*[a-z0-9]+@[a-z]+[.]?[!$%&'*+\/=?^_`{|}~-]*[a-z]+\.[a-z]{2,3}$/";
+    $passwordRegex = "/^.{8}$/";
+
+    if (!preg_match($emailRegex, $email)) {
+        $errors["email"] = "Invalid Email";
+        $dataOK = FALSE;
+    }
+
+    $password = test_input($_POST["p-word"]);
+    $passwordRegex = "/^.{8}$/";
+    if (!preg_match($passwordRegex, $password)) {
+        $errors["p-word"] = "Invalid Password";
+        $dataOK = FALSE;
+    }
+
+    // Check whether the fields are not empty
+    if ($dataOK) {
+
+        // Connect to the database and verify the connection
+        try {
+            $db = new PDO($attr, $db_user, $db_pwd, $options);
+        } catch (PDOException $e) {
+            throw new PDOException($e->getMessage(), (int)$e->getCode());
+        }
+
+        $query = "SELECT user_id, first_name, last_name, username, profile_photo FROM users WHERE email='$email' AND password='$password'";
+        $result = $db->query($query, PDO::FETCH_ASSOC);
+
+        if (!$result) {
+            // query has an error
+            $errors["Database Error"] = "Could not retrieve user information";
+        } elseif ($row = $result->fetch()) {
+            // If there's a row, we have a match and login is successful!
+            
+            session_start();
+
+            $_SESSION['user_id'] = $row['user_id'];
+            $_SESSION['first_name'] = $row['first_name'];
+            $_SESSION['last_name'] = $row['last_name'];
+            $_SESSION['username'] = $row['username'];
+            $_SESSION['profile_photo'] = $row['profile_photo'];
+
+            $db = null;
+            header("Location: homePage.php");
+            exit();
+        } else {
+            // login unsuccessful
+            $errors["Login Failed"] = "That email/password combination does not exist.";
+        }
+
+        $db = null;
+
+    } else {
+
+        $errors['Login Failed'] = "You entered invalid data while logging in.";
+    }
+    if(!empty($errors)){
+        foreach($errors as $type => $message) {
+            echo "$type: $message <br />\n";
+        }
+    }
+
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -36,21 +122,21 @@ index.html
             <div id="profile" class="profile-else">
                 <!-- where the user can login or sign up - becomes the profile when logged in -->
                 <div class="title-text">LOGIN</div>
-                <form id="login-form" class="auth-form" action="homePage.php" method="post">
+                <form id="login-form" class="auth-form" action="" enctype="multipart/form-data" method="post">
                     <div class="form-input-grid">
                         <!-- username label and input -->
                         <div class="placeholder-container">
                             <label for="email" class="placeholder">Email</label>
                             <input type="text" id="email" name="email" />
-                            <div id="error-text-email" class="error-text hidden">
+                            <div id="error-text-email" class="error-text <?= isset($errors['email'])?'':'hidden' ?>">
                                 Email invalid. Incorrect email format.
                             </div>
                         </div>
                         <!-- password label and input -->
                         <div class="placeholder-container">
-                            <label for="pword" class="placeholder">Password</label>
-                            <input type="password" id="pword" name="pword" />
-                            <div id="error-text-pword" class="error-text hidden">
+                            <label for="p-word" class="placeholder">Password</label>
+                            <input type="password" id="p-word" name="p-word" />
+                            <div id="error-text-pword" class="error-text <?= isset($errors['p-word'])?'':'hidden' ?>">
                                 Password invalid. Must be at least 6 characters long and contain at least one non-letter character.
                             </div>
                         </div>

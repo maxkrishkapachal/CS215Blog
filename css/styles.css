@@ -299,6 +299,7 @@ textarea, input[type="text"] {
     overflow-y: auto;
 }
 
+.post-image,
 .profile-photo{
     width: auto;
     height: 800px;

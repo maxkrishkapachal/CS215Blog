@@ -100,11 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
             // Fetch the image filetype
             $imageFileType = strtolower(pathinfo($_FILES["profile-photo"]["name"],PATHINFO_EXTENSION));
-
-            $userid = $db->lastInsertId();
-            echo "This many rows were altered by this query: $result<br />\n";
-            echo "The new record was has this primary key: $userid<br />\n";
-            
+            $userid = $db->lastInsertId();            
             $target_file = $target_dir . $userid . "." . $imageFileType;
 
             // Check whether the file exists in the uploads directory
