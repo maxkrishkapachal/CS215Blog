@@ -137,7 +137,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <label for="p-word" class="placeholder">Password</label>
                             <input type="password" id="p-word" name="p-word" />
                             <div id="error-text-pword" class="error-text <?= isset($errors['p-word'])?'':'hidden' ?>">
-                                Password invalid. Must be at least 6 characters long and contain at least one non-letter character.
+                                Password invalid. Must be at least 8 characters long and contain at least one non-letter character.
                             </div>
                         </div>
 
