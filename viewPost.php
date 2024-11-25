@@ -7,180 +7,122 @@ Assignment 2
 viewPost.html
 -->
 
+<?php
+require_once("db.php");
+
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: index.php");
+    exit();
+}
+
+$postId = $_GET['post_id'];
+
+try {
+    $db = new PDO($attr, $db_user, $db_pwd, $options);
+} catch (PDOException $e) {
+    throw new PDOException($e->getMessage(), (int)$e->getCode());
+}
+
+// Retrieve post details
+$query = "SELECT p.*, u.username, u.profile_photo FROM post p JOIN users u ON p.user_id = u.user_id WHERE p.post_id = $postId";
+$stmt = $db->query($query);
+$post = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$post) {
+    echo "Post not found.";
+    exit();
+}
+
+// Retrieve comments
+$commentQuery = "SELECT c.*, u.username, u.profile_photo, (SELECT SUM(updown) FROM vote WHERE comment_id = c.comment_id) as vote_score FROM comment c JOIN users u ON c.user_id = u.user_id WHERE c.post_id = $postId ORDER BY vote_score DESC, c.timestamp ASC";
+$commentStmt = $db->query($commentQuery);
+$comments = $commentStmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <title>BASECAMP - View Post</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="description" content="the page to view a specific post" />
-        <link rel="stylesheet" type="text/css" href="css/styles.css" />
-        <script src="js/eventHandlers.js" type="text/javascript"></script>
-    </head>
+<head>
+    <title>BASECAMP - View Post</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="The page to view a specific post" />
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <script src="js/eventHandlers.js" type="text/javascript"></script>
+</head>
 
-    <body>
-        <div id="container">
-            <header id="header">
-                <div id="logo"> 
-                    <!-- the top header logo -->
-                    <img src="images/LogoNoWordsNoLineTransparent.png" alt="Logo" id="logo-image" />
-                    <div id="company-name">BASECAMP</div>
-                </div>
-                <div id="header-button-container">
-                    <!-- logout button goes here -->
-                    <a href="index.php" class="button-style">Logout</a>
-                </div>
-            </header>
+<body>
+    <div id="container">
+        <header id="header">
+            <div id="logo">
+                <img src="images/LogoNoWordsNoLineTransparent.png" alt="Logo" id="logo-image" />
+                <div id="company-name">BASECAMP</div>
+            </div>
+            <div id="header-button-container">
+                <a href="index.php" class="button-style">Logout</a>
+            </div>
+        </header>
 
-            <div id="profile" class="profile-else">
-                <!-- User's username in profile -->
-                <div class="title-text">USERNAME</div>
-                
-                <!-- profile options -->
-                <div class="button-grid"> 
-                    <img src="images/red-netflix-profile.jpg" alt="red netflix profile picture" id="profile-picture" />
-                    <a href="homePage.php" class="button-style">DISCOVER</a>
-                    <a href="createPost.php" class="button-style">CREATE</a>
-                    <a href="managePost.php" class="button-style">MANAGE</a>
-                </div>
+        <div id="profile" class="profile-else">
+            <div class="title-text">
+                <?= htmlspecialchars($_SESSION['username']) ?>
+            </div>
+            <div class="button-grid">
+                <img src="images/<?= htmlspecialchars($_SESSION['profile_photo']) ?>" alt="Profile Picture" id="profile-picture" />
+                <a href="homePage.php" class="button-style">DISCOVER</a>
+                <a href="createPost.php" class="button-style">CREATE</a>
+                <a href="managePost.php" class="button-style">MANAGE</a>
+            </div>
+        </div>
+
+        <div id="view-post-container">
+            <div class="full-post">
+                <img src="images/<?= htmlspecialchars($post['profile_photo']) ?>" alt="Profile Picture" class="post-avatar" />
+                <div class="post-username"> <?= htmlspecialchars($post['username']) ?> </div>
+                <div class="post-time"> <?= htmlspecialchars($post['timestamp']) ?> </div>
+                <div class="post-title-full"> <?= htmlspecialchars($post['title']) ?> </div>
+                <div class="post-content-full"> <?= htmlspecialchars($post['content']) ?> </div>
+                <?php if ($post['post_image']): ?>
+                    <img src="images/<?= htmlspecialchars($post['post_image']) ?>" alt="Post Image" class="post-photo-full" />
+                <?php endif; ?>
             </div>
 
-            <div id="view-post-container">
-                <!-- the post currently being viewed -->
-                <div class="full-post">
-                    <img src="images/yellow-netflix-profile.jpg" alt="yellow netflix profile picture" class="post-avatar" />
-                    <div class="post-username">SMORE_MASTER</div>
-                    <div class="post-time">OCTOBER 3 2024 22:54</div>
-                    <div class="post-title-full">Anyone got an extra flashlight?</div>
-                    <div class="post-content-full">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                        Nulla eleifend tincidunt sagittis. Suspendisse lobortis 
-                        ipsum vel ipsum tempor, non eleifend justo vulputate. 
-                        Suspendisse sodales tellus vel lorem posuere, sit amet viverra 
-                        nibh dignissim. Nullam sagittis erat vitae l eo blandit varius. 
-                        Proin ut dui non mauris pharetra maximus. Quisque id massa 
-                        mauris. 
-                        
-
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eleifend tincidunt sagittis. Suspendisse lobortis ipsum vel ipsum tempor, non eleifend justo vulputate. Suspendisse sodales tellus vel lorem posuere, sit amet viverra nibh dignissim. Nullam sagittis erat vitae leo blandit varius. Proin ut dui non mauris pharetra maximus. Quisque id massa mauris. Praesent lacus odio, rutrum eu pulvinar eu, rutrum at turpis. Morbi aliquet tristique justo, at facilisis dolor facilisis nec. Aliquam mi leo, tincidunt eget purus non, gravida sollicitudin enim. Phasellus eu sodales ante. Suspendisse potenti. Vivamus eleifend mi lacinia enim ornare imperdiet. Integer sagittis dolor eu magna scelerisque, rutrum laoreet libero tempus. Maecenas pretium nunc ac nunc ullamcorper pharetra eget ac velit. Sed aliquam odio sed tellus posuere sollicitudin.
-
-                        Donec ornare vehicula fermentum. Pellentesque feugiat et massa vel vestibulum. Etiam consectetur nunc ut viverra condimentum. Sed eu feugiat est, venenatis dapibus justo. Praesent ex velit, ullamcorper ac scelerisque quis, vestibulum elementum diam. In placerat luctus pretium. Nullam aliquet urna eget vulputate ullamcorper. Sed condimentum condimentum nibh, et ultricies tellus. Pellentesque feugiat risus consequat gravida consequat.
-
-                        Fusce eu gravida nibh. Etiam porttitor nulla eget dictum ultrices. Maecenas ornare, turpis non hendrerit mattis, magna elit gravida nulla, non feugiat libero quam ut libero. Aenean placerat placerat tellus a cursus. Morbi tincidunt diam vel turpis placerat, eget aliquet ex pellentesque. Sed finibus efficitur nunc, quis feugiat lacus fermentum non. Etiam et consequat libero. Maecenas rutrum velit at metus finibus, eget venenatis diam blandit. Morbi dictum aliquet tortor, in tempor purus volutpat eget.
-
-                        Donec fringilla dolor non sapien faucibus, nec pretium metus blandit. Cras eu semper purus, id interdum est. Pellentesque non purus dui. Aliquam facilisis arcu quis risus venenatis, ut sagittis mi tempor. Integer feugiat semper nulla, sed cursus dolor congue ac. Pellentesque sagittis est in elit tempor, vel tincidunt augue vulputate. Nullam elementum quam erat, nec vestibulum dolor commodo a. Nam vulputate at augue et malesuada. Donec urna quam, iaculis quis orci at, consectetur feugiat sapien. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Ut tempus nibh quis venenatis condimentum. Fusce orci libero, feugiat in consectetur et, lacinia in tortor. Nulla quis elit mauris. Nunc vitae nulla sit amet dui dapibus semper vel in neque. Donec ligula sem, viverra quis ligula et, vestibulum dictum nisl. Ut viverra efficitur massa sed tincidunt.
-
-                        Proin quis nisl nec ligula lobortis venenatis. Morbi dictum, enim in congue lacinia, lorem nisl imperdiet ex, et dapibus ante lectus non felis. Donec elementum risus sed pulvinar molestie. Etiam augue magna, tincidunt nec eros non, blandit luctus eros. Donec semper risus eu nisi mattis, sit amet placerat urna sagittis. Mauris ac sagittis lorem, at lacinia mi. Fusce vitae eros quis dolor suscipit lobortis a eget elit. Donec malesuada turpis eu diam sodales, sodales tincidunt magna eleifend.
-
-                        Ut id erat eget felis posuere volutpat id vel arcu. In hac habitasse platea dictumst. Donec semper eros vitae urna ornare fringilla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nunc felis felis, tincidunt ut hendrerit id, suscipit quis ante. Aenean in ligula vel lectus bibendum vulputate. Nullam id diam nec purus rutrum aliquam eget cursus sapien. Aliquam erat volutpat. Maecenas vel est quis massa accumsan blandit. Donec tincidunt sodales finibus. Sed quis pulvinar odio. Integer egestas, lorem semper finibus fringilla, ipsum erat ultrices neque, vitae scelerisque lorem ligula eget erat. Curabitur auctor ante et nisl placerat commodo. Vivamus sit amet ultricies magna, et fermentum ligula. Nulla finibus cursus mauris ut tincidunt.
-
-                        Curabitur at egestas ligula. Proin aliquet nunc eu mi interdum accumsan. Cras suscipit lobortis finibus. Integer elit arcu, consequat ut cursus vel, tristique eu enim. Phasellus risus tortor, hendrerit eu maximus at, placerat ac nunc. Morbi sed venenatis nunc. In hac habitasse platea dictumst.
-
-                        Cras sit amet sem urna. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla dignissim odio quis tellus dignissim, ut convallis ante viverra. Cras hendrerit, ligula vestibulum rutrum gravida, ex mauris malesuada massa, et hendrerit erat est vitae nisi. Phasellus pellentesque risus sed iaculis consectetur. Donec ut finibus mi. Ut at mi velit. Fusce ultricies, dui in facilisis volutpat, neque elit viverra sapien, eget fermentum felis sem vel neque. Morbi a consequat sem. Aenean at faucibus purus. Duis at eros a nulla rhoncus volutpat.
-
-                        Quisque mattis cursus tempor. Nullam eu imperdiet purus, non euismod est. Proin dolor augue, porta at molestie sit amet, lacinia in sapien. Vestibulum eleifend congue turpis, vitae rutrum purus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean at felis posuere enim fermentum sodales ut ut nisi. In vehicula finibus lacus ut tristique. Etiam tincidunt rutrum suscipit. Vestibulum fringilla rhoncus orci, vel sodales neque varius id. Donec eu odio tempor, sollicitudin odio eget, elementum nulla.
-
-                        Donec aliquet arcu a ex lobortis rhoncus. Vivamus mollis vitae dui at tincidunt. Nullam efficitur molestie odio ac gravida. Pellentesque interdum nisi in nibh laoreet volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Suspendisse convallis dictum turpis, sed condimentum lectus viverra sit amet. Vestibulum rhoncus ac lectus eget molestie. Nullam non felis enim. Vivamus ut risus commodo magna condimentum semper in id leo. Donec at lectus id ex rhoncus mollis. Ut auctor, mi sed efficitur finibus, mi elit gravida odio, sit amet posuere tellus neque et ipsum. Curabitur ultrices lacus diam, et bibendum urna blandit in. Cras a quam elit. Phasellus nisl augue, posuere eu molestie vitae, ultrices id nisi. 
-                    </div>
-                    <img src="images/camping20.jpg" alt="camping photo twenty" class="post-photo-full" />
-                    <div class="post-stats-full">
-                        <div class="post-likes">553 Likes</div>
-                        <div class="post-comments">243 Comments</div>
-                    </div> 
-                </div>
-                
-                <!-- comments within the post -->
-
-                <div id="comment-section">
-
+            <div id="comment-section">
+                <?php foreach ($comments as $comment): ?>
                     <div class="individual-comment">
-                        <img src="images/green-netflix-profile.jpg" alt="green netflix profile picture" class="comment-avatar" />
-                        <div class="comment-username">WALKWALKWALK</div>
-                        <div class="comment-time">OCTOBER 3 2024 23:43</div>
-                        <div class="comment-content">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                            Nulla eleifend tincidunt sagittis. Suspendisse lobortis 
-                            ipsum vel ipsum tempor, non eleifend justo vulputate. 
-                            Suspendisse sodales tellus vel lorem posuere, sit amet viverra 
-                            nibh dignissim. Nullam sagittis erat vitae l eo blandit varius. 
-                            Proin ut dui non mauris pharetra maximus. Quisque id massa 
-                            mauris. 
-                        </div>
+                        <img src="images/<?= htmlspecialchars($comment['profile_photo']) ?>" alt="Comment Avatar" class="comment-avatar" />
+                        <div class="comment-username"> <?= htmlspecialchars($comment['username']) ?> </div>
+                        <div class="comment-time"> <?= htmlspecialchars($comment['timestamp']) ?> </div>
+                        <div class="comment-content"> <?= htmlspecialchars($comment['content']) ?> </div>
                         <div class="comment-stats">
-                            <a href="" class="vote-style">+24</a>
-                            <a href="" class="vote-style">-2</a>
-                        </div> 
-                    </div>
-                    
-                    <div class="individual-comment">
-                        <img src="images/blue-netflix-profile.jpg" alt="blue netflix profile picture" class="comment-avatar" />
-                        <div class="comment-username">ADVENTURE_LOUIS</div>
-                        <div class="comment-time">OCTOBER 3 2024 23:43</div>
-                        <div class="comment-content">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eros 
-                            turpis, ullamcorper id pharetra eget, euismod ut elit. Vestibulum 
-                            nec mauris ut risus pretium tincidunt. Ut rutrum urna vel metus 
-                            tincidunt, vitae maximus nulla pretium. Proin quis egestas ex. 
-                            Integer consectetur odio odio, vel aliquam erat luctus quis. Sed 
-                            non dapibus nisl. Fusce euismod elit nec sapien convallis, nec 
-                            elementum est pharetra. Maecenas laoreet neque quis massa luctus 
-                            malesuada sed sit amet magna. Sed vestibulum sed leo semper faucibus. 
-                            In iaculis ligula est, in tempus mi sodales et. Phasellus blandit 
-                            iaculis semper. Etiam commodo neque sed maximus ultricies. Maecenas 
-                            nec accumsan purus. Pellentesque lacinia leo in turpis venenatis, 
-                            sed laoreet dui mattis. Etiam ultrices dolor eu ipsum auctor, a 
-                            pellentesque sem tincidunt. 
+                            <a href="vote.php?comment_id=<?= $comment['comment_id'] ?>&updown=1" class="vote-style">+<?= htmlspecialchars($comment['vote_score'] ?? 0) ?></a>
+                            <a href="vote.php?comment_id=<?= $comment['comment_id'] ?>&updown=0" class="vote-style">-<?= htmlspecialchars($comment['vote_score'] ?? 0) ?></a>
                         </div>
-                        <div class="comment-stats">
-                            <a href="" class="vote-style">+55</a>
-                            <a href="" class="vote-style">-1</a>
-                        </div> 
                     </div>
+                <?php endforeach; ?>
+            </div>
 
-                    <div class="individual-comment">
-                        <img src="images/red-netflix-profile.jpg" alt="red netflix profile picture" class="comment-avatar" />
-                        <div class="comment-username">DORAS_BACKPACK</div>
-                        <div class="comment-time">OCTOBER 4 2024 7:34</div>
-                        <div class="comment-content">
-                            This is a comment.
-                        </div>
-                        <div class="comment-stats">
-                            <a href="" class="vote-style">+3</a>
-                            <a href="" class="vote-style">-0</a>
-                        </div> 
-                    </div>
-
-                    <div class="individual-comment">
-                        <img src="images/teal-netflix-profile.png" alt="teal netflix profile picture" class="comment-avatar" />
-                        <div class="comment-username">TRENT_IN_A_TENT</div>
-                        <div class="comment-time">OCTOBER 4 2024 10:44</div>
-                        <div class="comment-content">
-                            Donec molestie ex ligula, mattis volutpat turpis porttitor a. Nunc vehicula, 
-                            metus quis tempor maximus, purus sapien vehicula ligula, sed faucibus mi 
-                            lorem ac sem. Proin in ligula quis leo mattis ultricies. Class aptent taciti 
-                            sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. 
-                        </div>
-                        <div class="comment-stats">
-                            <a href="" class="vote-style">+75</a>
-                            <a href="" class="vote-style">-5</a>
-                        </div> 
-                    </div>
-                </div>
-
-                <!-- where the user can leave their own comment -->
-                <form class="comment-form" action="" method="post">
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <form class="comment-form" action="addComment.php" method="post">
+                    <input type="hidden" name="post_id" value="<?= $postId ?>">
                     <div class="comment-form-container">
-                        <textarea rows="4" cols="50" id="leave-comment" name="leave-comment" ></textarea>
+                        <textarea rows="4" cols="50" id="leave-comment" name="content" ></textarea>
                         <div id="error-text-comment" class="error-text hidden">
                             Must contain 1 - 1000 characters.
                         </div>
                         <input type="submit" id="post-comment" class="button-style" name="post-comment" value="Post" />
                     </div>
                 </form>
-                <br><br><br>
-            </div>
+            <?php endif; ?>
         </div>
-        
-        <script src="js/eventRegisterComment.js" type="text/javascript"></script>
-    </body>
+    </div>
+    
+    <script src="js/eventRegisterComment.js" type="text/javascript"></script>
+</body>
+
 </html>
+
+<?php
+$db = null;
+?>
