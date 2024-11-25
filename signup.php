@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = test_input($_POST["email"]);
     $username = test_input($_POST["u-name"]);
     $password = test_input($_POST["p-word"]);
-    $dob = test_input($_POST["dob"]);;
+    $dob = test_input($_POST["dob"]);
     
     // Form Field Regular Expressions
     $nameRegex = "/^[a-zA-Z]+$/";
