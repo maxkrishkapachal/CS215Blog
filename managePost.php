@@ -57,7 +57,7 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?= htmlspecialchars($_SESSION['username']) ?>
             </div>
             <div class="button-grid">
-                <img src="images/<?= htmlspecialchars($_SESSION['profile_photo']) ?>" alt="Profile Picture" id="profile-picture" />
+                <img src="<?= htmlspecialchars($_SESSION['profile_photo']) ?>" alt="Profile Picture" id="profile-picture" />
                 <a href="homePage.php" class="button-style">DISCOVER</a>
                 <a href="createPost.php" class="button-style">CREATE</a>
                 <a href="managePost.php" class="button-style">MANAGE</a>
