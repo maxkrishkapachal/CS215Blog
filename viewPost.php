@@ -69,7 +69,7 @@ $comments = $commentStmt->fetchAll(PDO::FETCH_ASSOC);
                 <?= htmlspecialchars($_SESSION['username']) ?>
             </div>
             <div class="button-grid">
-                <img src="images/<?= htmlspecialchars($_SESSION['profile_photo']) ?>" alt="Profile Picture" id="profile-picture" />
+                <img src="<?= htmlspecialchars($_SESSION['profile_photo']) ?>" alt="Profile Picture" id="profile-picture" />
                 <a href="homePage.php" class="button-style">DISCOVER</a>
                 <a href="createPost.php" class="button-style">CREATE</a>
                 <a href="managePost.php" class="button-style">MANAGE</a>
@@ -78,20 +78,20 @@ $comments = $commentStmt->fetchAll(PDO::FETCH_ASSOC);
 
         <div id="view-post-container">
             <div class="full-post">
-                <img src="images/<?= htmlspecialchars($post['profile_photo']) ?>" alt="Profile Picture" class="post-avatar" />
+                <img src="<?= htmlspecialchars($post['profile_photo']) ?>" alt="Profile Picture" class="post-avatar" />
                 <div class="post-username"> <?= htmlspecialchars($post['username']) ?> </div>
                 <div class="post-time"> <?= htmlspecialchars($post['timestamp']) ?> </div>
                 <div class="post-title-full"> <?= htmlspecialchars($post['title']) ?> </div>
                 <div class="post-content-full"> <?= htmlspecialchars($post['content']) ?> </div>
                 <?php if ($post['post_image']): ?>
-                    <img src="images/<?= htmlspecialchars($post['post_image']) ?>" alt="Post Image" class="post-photo-full" />
+                    <img src="<?= htmlspecialchars($post['post_image']) ?>" alt="Post Image" class="post-photo-full" />
                 <?php endif; ?>
             </div>
 
             <div id="comment-section">
                 <?php foreach ($comments as $comment): ?>
                     <div class="individual-comment">
-                        <img src="images/<?= htmlspecialchars($comment['profile_photo']) ?>" alt="Comment Avatar" class="comment-avatar" />
+                        <img src="<?= htmlspecialchars($comment['profile_photo']) ?>" alt="Comment Avatar" class="comment-avatar" />
                         <div class="comment-username"> <?= htmlspecialchars($comment['username']) ?> </div>
                         <div class="comment-time"> <?= htmlspecialchars($comment['timestamp']) ?> </div>
                         <div class="comment-content"> <?= htmlspecialchars($comment['content']) ?> </div>

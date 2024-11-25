@@ -36,23 +36,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Collect and validate form inputs
     $postTitle = test_input($_POST["post-title"]);
     $postText = test_input($_POST["post-text"]);
-    
-    // Form Field Regular Expressions
-    $postRegex = "/^[^<>]*$/"; 
-    
-    // Validate the form inputs against their Regexes 
-    if (!preg_match($postRegex, $postTitle)) {
-        $errors["post-title"] = "HTML content not allowed in post title.";
-    }
-    if (!preg_match($postRegex, $postText)) {
-        $errors["post-text"] = "HTML content not allowed in post body.";
-    }
 
     // Declare $target_file here so we can use it later
     $target_file = "";
 
     try {
-        $db = new PDO("mysql:host=localhost; dbname=mjk991", "mjk991", "C0mput3r.5c13nc3");
+        $db = new PDO($attr, $db_user, $db_pwd, $options);
         $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         die("PDO Error >> " . $e->getMessage() . "\n<br />");

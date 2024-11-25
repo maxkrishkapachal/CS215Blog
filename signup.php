@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $target_file = "";
 
     try {
-        $db = new PDO("mysql:host=localhost; dbname=mjk991", "mjk991", "C0mput3r.5c13nc3");
+        $db = new PDO($attr, $db_user, $db_pwd, $options);
         $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         die("PDO Error >> " . $e->getMessage() . "\n<br />");
