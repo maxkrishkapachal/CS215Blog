@@ -103,8 +103,8 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             $voteStmt = $db->query($voteQuery);
                             $votes = $voteStmt->fetch(PDO::FETCH_ASSOC);
                             ?>
-                            <a href="" class="vote-style">+<?= htmlspecialchars($votes['up_votes']) ?></a>
-                            <a href="" class="vote-style">-<?= htmlspecialchars($votes['down_votes']) ?></a>
+                            <div class="vote-style">+<?= htmlspecialchars($votes['up_votes']) ?></div>
+                            <div class="vote-style">-<?= htmlspecialchars($votes['down_votes']) ?></div>
                         </div>
                     </div>
                 <?php endforeach; ?>

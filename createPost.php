@@ -36,6 +36,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Collect and validate form inputs
     $postTitle = test_input($_POST["post-title"]);
     $postText = test_input($_POST["post-text"]);
+    $postTitle = html_entity_decode($postTitle);
+    $postText = html_entity_decode($postText);
 
     // Declare $target_file here so we can use it later
     $target_file = "";
@@ -50,10 +52,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //If there are no errors so far we can try inserting a user
     if (empty($errors)) {
         
-        $query = "INSERT INTO post (user_id, timestamp, title, content, post_image) VALUES ('$userid', NOW(), '$postTitle', '$postText', 'image_stub')";
-        $result = $db->exec($query);
+        $query = "INSERT INTO post (user_id, timestamp, title, content, post_image) VALUES (:userid, NOW(), :postTitle, :postText, 'image_stub')";
+        $result = $db->prepare($query);
 
-        if (!$result) {
+        // Bind the parameters
+        $result->bindParam(':userid', $userid);
+        $result->bindParam(':postTitle', $postTitle);
+        $result->bindParam(':postText', $postText);
+        $result->execute();
+        
+        if(!$result) {
             $errors["Database Error:"] = "Failed to create post";
         } else {
             $target_dir = "uploads/post/";

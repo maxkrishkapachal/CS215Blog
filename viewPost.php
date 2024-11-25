@@ -61,10 +61,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // If we got here through a POST submitted form, process the form
     if (isset($_POST['post-comment'])){
         $comment = test_input($_POST["content"]);
+        $comment = html_entity_decode($comment);
     
         //If there are no errors so far we can try inserting a user     
-        $query = "INSERT INTO comment (post_id, user_id, timestamp, content) VALUES ('$postId', '$userId', NOW(), '$comment')";
-        $result = $db->exec($query);
+        $query = "INSERT INTO comment (post_id, user_id, timestamp, content) VALUES ('$postId', '$userId', NOW(), :comment)";
+        $result = $db->prepare($query);
+
+        // Bind the parameters
+        $result->bindParam(':comment', $comment);
+        $result->execute();
 
         if (!$result) {
             $errors["Database Error:"] = "Failed to insert comment";
@@ -165,8 +170,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="comment-content"> <?= htmlspecialchars($comment['content']) ?> </div>
                         <form class="comment-stats" action="" enctype="multipart/form-data" method="post">
                             <input type="hidden" name="comment_id" value="<?= htmlspecialchars($comment['comment_id']) ?>">
-                            <input type="submit" id="post-comment" class="button-style" name="comment-upvote" value="+<?= htmlspecialchars($comment['upvotes'] ?? 0) ?>" />
-                            <input type="submit" id="post-comment" class="button-style" name="comment-downvote" value="-<?= htmlspecialchars($comment['downvotes'] ?? 0) ?>" />
+                            <input type="submit" id="post-comment" class="vote-style" name="comment-upvote" value="+<?= htmlspecialchars($comment['upvotes'] ?? 0) ?>" />
+                            <input type="submit" id="post-comment" class="vote-style" name="comment-downvote" value="-<?= htmlspecialchars($comment['downvotes'] ?? 0) ?>" />
                         </form>
                     </div>
                 <?php endforeach; ?>
