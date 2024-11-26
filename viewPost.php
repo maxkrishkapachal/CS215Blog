@@ -169,7 +169,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="comment-time"> <?= htmlspecialchars($comment['timestamp']) ?> </div>
                         <div class="comment-content"> <?= htmlspecialchars($comment['content']) ?> </div>
                         <form class="comment-stats" action="" enctype="multipart/form-data" method="post">
-                            <input type="hidden" name="comment_id" value="<?= htmlspecialchars($comment['comment_id']) ?>">
+                            <input type="hidden" name="comment_id" value="<?= htmlspecialchars($comment['comment_id']) ?>" />
                             <input type="submit" id="comment-upvote" class="vote-style post-comment" name="comment-upvote" value="+<?= htmlspecialchars($comment['upvotes'] ?? 0) ?>" />
                             <input type="submit" id="comment-downvote" class="vote-style post-comment" name="comment-downvote" value="-<?= htmlspecialchars($comment['downvotes'] ?? 0) ?>" />
                         </form>
@@ -179,7 +179,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <?php if (isset($_SESSION['user_id'])): ?>
                 <form class="comment-form" action="" enctype="multipart/form-data" method="post">
-                    <input type="hidden" name="post_id" value="<?= $postId ?>">
+                    <input type="hidden" name="post_id" value="<?= $postId ?>" />
                     <div class="comment-form-container">
                         <textarea rows="4" cols="50" id="leave-comment" name="content" ></textarea>
                         <div id="error-text-comment" class="error-text hidden">
