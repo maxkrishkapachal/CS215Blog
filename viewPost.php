@@ -170,8 +170,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="comment-content"> <?= htmlspecialchars($comment['content']) ?> </div>
                         <form class="comment-stats" action="" enctype="multipart/form-data" method="post">
                             <input type="hidden" name="comment_id" value="<?= htmlspecialchars($comment['comment_id']) ?>">
-                            <input type="submit" id="post-comment" class="vote-style" name="comment-upvote" value="+<?= htmlspecialchars($comment['upvotes'] ?? 0) ?>" />
-                            <input type="submit" id="post-comment" class="vote-style" name="comment-downvote" value="-<?= htmlspecialchars($comment['downvotes'] ?? 0) ?>" />
+                            <input type="submit" id="comment-upvote" class="vote-style post-comment" name="comment-upvote" value="+<?= htmlspecialchars($comment['upvotes'] ?? 0) ?>" />
+                            <input type="submit" id="comment-downvote" class="vote-style post-comment" name="comment-downvote" value="-<?= htmlspecialchars($comment['downvotes'] ?? 0) ?>" />
                         </form>
                     </div>
                 <?php endforeach; ?>
@@ -185,7 +185,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div id="error-text-comment" class="error-text hidden">
                             Must contain 1 - 1000 characters.
                         </div>
-                        <input type="submit" id="post-comment" class="button-style" name="post-comment" value="Post" />
+                        <input type="submit" id="post-comment" class="button-style post-comment" name="post-comment" value="Post" />
                     </div>
                 </form>
             <?php endif; ?>

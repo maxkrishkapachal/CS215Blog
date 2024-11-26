@@ -77,6 +77,21 @@ function validatePostContent(content){
         return false;
 }
 
+function validatePostImage(image){
+    let file = image.files[0];
+
+    let MAX_FILE_SIZE = 1024 * 1024;  // 1MB in bytes
+
+    console.log(file);
+    console.log(file.size);
+    console.log(MAX_FILE_SIZE);
+
+    if(file && file.size <= MAX_FILE_SIZE)
+        return true;
+    else   
+        return false;
+}
+
 function validateComment(comment){
     if(comment.length >= TEXT_MIN && comment.length <= COMMENT_MAX)
         return true;
@@ -109,6 +124,8 @@ function charCounter(event, limit) {
   }
 
 function validateSignup(event){
+    // image
+    let image = document.getElementById("upload-photo-button");
     // email
     let email = document.getElementById("email");
     // username
@@ -121,6 +138,18 @@ function validateSignup(event){
     let avatar = document.getElementById("upload-photo-button");
 
     let formIsValid = true;
+
+    if (!validatePostImage(image)) {
+        image.classList.add("error-input");
+        let errorMessage = document.getElementById("error-text-image");
+        errorMessage.classList.remove("hidden");
+        formIsValid = false;
+    }
+    else {
+        image.classList.remove("error-input");
+        let errorMessage = document.getElementById("error-text-image");
+        errorMessage.classList.add("hidden");
+    }
 
     if(!validateEmail(email.value)){
         email.classList.add("error-input");
@@ -229,6 +258,8 @@ function validatePost(event){
     let title = document.getElementById("post-title");
     // content
     let content = document.getElementById("post-text");
+    // image
+    let image = document.getElementById("upload-photo-button");
 
     let formIsValid = true;
 
@@ -254,7 +285,19 @@ function validatePost(event){
         content.classList.remove("error-input");
         let errorMessage = document.getElementById("error-text-content");
         errorMessage.classList.add("hidden");
-    }  
+    } 
+
+    if (!validatePostImage(image)) {
+        image.classList.add("error-input");
+        let errorMessage = document.getElementById("error-text-image");
+        errorMessage.classList.remove("hidden");
+        formIsValid = false;
+    }
+    else {
+        image.classList.remove("error-input");
+        let errorMessage = document.getElementById("error-text-image");
+        errorMessage.classList.add("hidden");
+    }
 
     if(!formIsValid)
         event.preventDefault();
@@ -384,6 +427,20 @@ function postContentHandler(event){
     }
     else {
         content.classList.remove("error-input");
+        errorMessage.classList.add("hidden");
+    }
+}
+
+function postImageHandler(event){
+    let fileInput = event.target;
+    let errorMessage = document.getElementById("error-text-image");
+    
+    if (!validatePostImage(fileInput)) {
+        fileInput.classList.add("error-input");
+        errorMessage.classList.remove("hidden");
+    }
+    else {
+        fileInput.classList.remove("error-input");
         errorMessage.classList.add("hidden");
     }
 }

@@ -13,6 +13,10 @@ title.addEventListener("blur", postTitleHandler);
 let content = document.getElementById("post-text");
 content.addEventListener("blur", postContentHandler);
 
+// image
+let postImage = document.getElementById("upload-photo-button");
+postImage.addEventListener("change", postImageHandler);
+
 // submit button
 let form = document.getElementById("create-form");
 form.addEventListener("submit", validatePost);

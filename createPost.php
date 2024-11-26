@@ -66,8 +66,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             $target_dir = "uploads/post/";
             $uploadOk = TRUE;
-
-            
         
             // Fetch the image filetype
             $imageFileType = strtolower(pathinfo($_FILES["post-image"]["name"],PATHINFO_EXTENSION));
@@ -81,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
                 
             // Check whether the file is not too large
-            if ($_FILES["post-image"]["size"] > 1000000) {
+            if ($_FILES["post-image"]["size"] > (1024 * 1024)) {
                 $errors["post-image"] = "File is too large. Maximum 1MB. ";
                 $uploadOk = FALSE;
             }
@@ -101,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (!$fileStatus) {
                     // The user's avatar file could not be moved
                     $errors["Server Error"] = "Unable to upload photo.";
-                    $uploadOK = FALSE;
+                    $uploadOk = FALSE;
                 }
             }
             
@@ -116,16 +114,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
                 $db = null;
             } else {
-                $query =  "UPDATE post SET post_image='$target_file' WHERE post_id=$postid";
-                $result = $db->exec($query);
+                // $query =  "UPDATE post SET post_image='$target_file' WHERE post_id=$postid";
+                // $result = $db->exec($query);
 
-                if (!$result) {
-                    $errors["Database Error:"] = "could not update post image";
-                } else {
-                    $db = null;
-                    header("Location: managePost.php");
-                    exit();
-                }
+                // if (!$result) {
+                //     $errors["Database Error:"] = "could not update post image";
+                // } else {
+                //     $db = null;
+                //     header("Location: managePost.php");
+                //     exit();
+                // }
             } // image was uploadOk
         } // Insert user query worked
     } 
@@ -190,7 +188,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <!-- Label and Input for the post text-->
                     <div class="placeholder-container">
                         <label for="post-text" class="placeholder">Post Body:</label>           
-                        <textarea rows="5" cols="50" id="post-text" name="post-text"> </textarea>
+                        <textarea rows="5" cols="50" id="post-text" name="post-text"></textarea>
                         <div id="error-text-content" class="error-text <?= isset($errors['post-text'])?'':'hidden' ?>">
                             Must contain 1 - 2000 characters.
                         </div>
@@ -200,10 +198,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="placeholder-container">
                         <label for="upload-photo-button" class="placeholder">Upload Photo:</label>
                         <input type="file" id="upload-photo-button" name="post-image" accept="image/*" />
-                        <img class="add-post-photo" alt="Uploaded Photo" src="images/camping15.jpg" />
-                        <div id="error-text-content" class="error-text <?= isset($errors['post-image'])?'':'hidden' ?>">
+                        <div id="error-text-image" class="error-text hidden">
                             Post image invalid. Photo must be less than 1MB and be of type JPEG, JPG, PNG, or GIF.
                         </div>
+                        <img class="add-post-photo" alt="Uploaded Photo" src="images/camping15.jpg" />
                     </div>
                     <div class="placeholder-container">
                         <input type="submit" class="post-button-style" id="post" name="post-button" value="Post" />

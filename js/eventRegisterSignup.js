@@ -5,6 +5,10 @@
 // Assignment 3
 // eventRegisterSignup.js
 
+// image
+let image = document.getElementById("upload-photo-button");
+image.addEventListener("change", postImageHandler);
+
 // email
 // error-text-email
 let email = document.getElementById("email");

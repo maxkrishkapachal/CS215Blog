@@ -201,10 +201,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <div class="placeholder-container">
                                 <label for="upload-photo-button" class="placeholder">Upload Profile Photo</label>
                                 <input type="file" id="upload-photo-button" name="profile-photo" accept="image/*" />
-                                <img class="add-profile-photo" alt="Uploaded Photo" src="images/blank-profile-picture.png" />
-                                <div id="error-text-avatar" class="error-text <?= isset($errors['profile-photo'])?'':'hidden' ?>">
+                                <div id="error-text-image" class="error-text hidden">
                                     Profile picture invalid. Photo must be less than 1MB and be of type JPEG, JPG, PNG, or GIF.
                                 </div>
+                                <img class="add-profile-photo" alt="Uploaded Photo" src="images/blank-profile-picture.png" />
                             </div>
                         </div>
                     </div>
