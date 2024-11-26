@@ -15,4 +15,5 @@ A blog hosted on Titan using JavaScript, HTML, CSS, PHP, SQL, and Ajax for CS 21
 - ✔️ Assignment 1: Sketching and Storyboarding
 - ✔️ Assignment 2: HTML and CSS
 - ✔️ Assignment 3: JavaScript
-- ⏳ Assignment 4
+- ✔️ Assignment 4: SQL
+- ✔️ Assignment 5: PHP
