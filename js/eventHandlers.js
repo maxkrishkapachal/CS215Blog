@@ -511,7 +511,7 @@ function getNewPosts(limit){
                 }
             }
         }
-        xhr.open("GET", "ajaxBackend.php?lastPostId=" + post + "&limit=" + limit, true);
+        xhr.open("GET", "ajaxBackend.php?lastPostId=" + post + "&limit=" + limit + "&req=" + "p", true);
 	 	xhr.send();
     }
 }
