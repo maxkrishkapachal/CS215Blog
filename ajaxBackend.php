@@ -61,8 +61,24 @@ switch ($requestType) {
         }
         break;
 
-    case 'c': // update comment request
-        
+    case 'c': // Update comment request
+        $postId = isset($_GET['post_id']);
+
+        // Query to get comments for a specific post
+        $commentQuery = "SELECT c.*, u.username, u.profile_photo, 
+            SUM(CASE WHEN v.updown = 1 THEN 1 ELSE 0 END) AS upvotes, 
+            SUM(CASE WHEN v.updown = 0 THEN 1 ELSE 0 END) AS downvotes
+            FROM comment c 
+            JOIN users u ON c.user_id = u.user_id 
+            LEFT JOIN vote v ON c.comment_id = v.comment_id
+            WHERE c.post_id = $postId
+            GROUP BY c.comment_id
+            ORDER BY c.timestamp ASC;";
+        $commentStmt = $db->exec($commentQuery);
+        $comments = $commentStmt->fetchAll();
+
+        // Return the comments as JSON
+        echo json_encode(['comments' => $comments]);
         break;
 
     case 'v':   // update vote request

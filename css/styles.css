@@ -613,6 +613,13 @@ a {
     justify-content: flex-start;
 }
 
+/*VOTE BUTTON HIGHLIGHT_FADE*/
+
+.highlight-update {
+    background-color: #ffff99; 
+    transition: background-color 5s ease-out; 
+}
+
 /* COMMENT PROFILE PICTURE */
 
 .comment-avatar {

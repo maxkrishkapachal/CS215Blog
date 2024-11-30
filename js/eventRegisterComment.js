@@ -16,3 +16,8 @@ form.addEventListener("submit", validatePostComment);
 // dynamic counter
 let commentTextarea = document.getElementById("leave-comment");
 commentTextarea.addEventListener("input", (event) => charCounter(event, 1000));
+
+// Update comments every 2 minutes
+document.addEventListener("DOMContentLoaded", function () {
+    setInterval(function () { checkForUpdatedComments();}, 120000); // 120000 ms = 2 minutes
+});

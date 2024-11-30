@@ -565,3 +565,58 @@ function getNewPosts(limit){
 	// 	let lastLoginText = document.getElementById("last-login");
 	// 	lastLoginText.innerHTML = "";
 	// }
+
+
+    function getUpdatedComments(limit) {
+        let firstCommentElement = document.getElementById("comment-section").firstElementChild;
+        let commentId = firstCommentElement ? parseInt(firstCommentElement.dataset.commentId) : 0;
+    
+        if (!isNaN(commentId)) {
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    let updatedCommentsArray = null;
+                    updatedCommentsArray = JSON.parse(xhr.responseText);
+                    console.log(updatedCommentsArray);
+    
+                    let commentSection = document.getElementById("comment-section");
+                    // Update the comments
+                    if (updatedCommentsArray.comments && updatedCommentsArray.comments.length > 0) {
+                        for (let i = 0; i < updatedCommentsArray.comments.length; i++) {
+                            let jsonObject = updatedCommentsArray.comments[i];
+                            let newCommentElement = document.createElement("div");
+                            newCommentElement.setAttribute('data-comment-id', jsonObject.comment_id);
+                            newCommentElement.classList.add('individual-comment');
+                            newCommentElement.innerHTML = `
+                                <img src="` + jsonObject.profile_photo + `" alt="Comment Avatar" class="comment-avatar" />
+                                <div class="comment-username">` + jsonObject.username + `</div>
+                                <div class="comment-time">` + jsonObject.timestamp + `</div>
+                                <div class="comment-content">` + jsonObject.content + `</div>
+                                <form class="comment-stats" action="" enctype="multipart/form-data" method="post">
+                                    <input type="hidden" name="comment_id" value="` + jsonObject.comment_id + `" />
+                                    <input type="submit" id="comment-upvote" class="vote-style post-comment" name="comment-upvote" value="+` + jsonObject.upvotes + `" />
+                                    <input type="submit" id="comment-downvote" class="vote-style post-comment" name="comment-downvote" value="-` + jsonObject.downvotes + `" />
+                                </form>
+                            `;
+    
+                            commentSection.insertBefore(newCommentElement, commentSection.firstChild);
+    
+                            // Highlight the new or updated comment
+                            newCommentElement.classList.add("highlight-update");
+                            // setTimeout(function () {
+                            //     newCommentElement.classList.remove("highlight-update");
+                            // }, 5000); // Remove highlight after 5 seconds
+                        }
+                        
+                        
+                        
+                    }
+                }
+            }
+            xhr.open("GET", "ajaxBackend.php?lastCommentId=" + commentId + "&limit=" + limit + "&req=" + "c", true);
+            xhr.send();
+        }
+    }
+
+
+
