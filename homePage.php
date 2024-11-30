@@ -92,5 +92,6 @@ if (!isset($_SESSION["user_id"])) {
                 <?php endforeach; ?>
             </div>
         </div>
+        <script src="js/eventRegisterNewPosts.js"></script>
     </body>
 </html>

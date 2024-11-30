@@ -458,3 +458,61 @@ function commentHandler(event){
         errorMessage.classList.add("hidden");
     }
 }
+
+
+//---------------- event handler for New Posts in Home Page start ------------------------
+function checkForNewPosts() {
+    // Get the ID of the most recent post on the page
+    let latestPostElement = document.querySelector('.full-post');
+    let latestPostID = latestPostElement ? latestPostElement.dataset.postId : 0;
+
+    // Create an AJAX request
+    let attr = new XMLHttpRequest();
+    attr.open("GET", "checkNewPosts.php?latest_post_id=" + latestPostId, true);
+    attr.setRequestHeader("Content-Type", "application/json");
+
+    attr.onreadystatechange = function () {
+        if (attr.readyState === 4 && attr.status === 200) {
+            let response = JSON.parse(attr.responseText);
+            if (response.newPosts && response.newPosts.length > 0) {
+                addNewPosts(response.newPosts);
+            }
+        }
+    };
+
+    attr.send();
+}
+
+function addNewPosts(newPosts) {
+    let frontPagePosts = document.getElementById("front-page-posts");
+
+    newPosts.forEach(function (post) {
+        // Create a new post element
+        let postElement = document.createElement("div");
+        postElement.classList.add("full-post");
+        postElement.dataset.postId = post.post_id;
+
+        postElement.innerHTML = `
+            <img src="${post.profile_photo}" alt="Profile Picture" class="post-avatar" />
+            <div class="post-username"> ${post.username} </div>
+            <div class="post-time"> ${post.timestamp} </div>
+            <div class="post-title-full">
+                <a href="viewPost.php?post_id=${post.post_id}"> ${post.title} </a>
+            </div>
+            <div class="post-content-full"> ${post.content} </div>
+            ${post.post_image ? `<img src="${post.post_image}" alt="Post Image" class="post-photo-full" />` : ''}
+        `;
+
+        // Insert the new post at the top
+        frontPagePosts.insertBefore(postElement, frontPagePosts.firstChild);
+    });
+
+    // Remove old posts if there are more than 20
+    let allPosts = document.querySelectorAll(".full-post");
+    if (allPosts.length > 20) {
+        for (let i = 20; i < allPosts.length; i++) {
+            frontPagePosts.removeChild(allPosts[i]);
+        }
+    }
+} 
+//---------------- event handler for New Posts in Home Page end ------------------------
