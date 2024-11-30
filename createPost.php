@@ -114,16 +114,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
                 $db = null;
             } else {
-                // $query =  "UPDATE post SET post_image='$target_file' WHERE post_id=$postid";
-                // $result = $db->exec($query);
+                $query =  "UPDATE post SET post_image='$target_file' WHERE post_id=$postid";
+                $result = $db->exec($query);
 
-                // if (!$result) {
-                //     $errors["Database Error:"] = "could not update post image";
-                // } else {
-                //     $db = null;
-                //     header("Location: managePost.php");
-                //     exit();
-                // }
+                if (!$result) {
+                    $errors["Database Error:"] = "could not update post image";
+                } else {
+                    $db = null;
+                    header("Location: managePost.php");
+                    exit();
+                }
             } // image was uploadOk
         } // Insert user query worked
     } 
