@@ -460,59 +460,108 @@ function commentHandler(event){
 }
 
 
-//---------------- event handler for New Posts in Home Page start ------------------------
-function checkForNewPosts() {
-    // Get the ID of the most recent post on the page
-    let latestPostElement = document.querySelector('.full-post');
-    let latestPostID = latestPostElement ? latestPostElement.dataset.postId : 0;
+/************************************************************/
+/********************* AJAX HANDLERS ************************/
+/************************************************************/
 
-    // Create an AJAX request
-    let attr = new XMLHttpRequest();
-    attr.open("GET", "checkNewPosts.php?latest_post_id=" + latestPostId, true);
-    attr.setRequestHeader("Content-Type", "application/json");
+function waitForPosts(limit) {
+    setInterval(() => getNewPosts(limit), 10000);
 
-    attr.onreadystatechange = function () {
-        if (attr.readyState === 4 && attr.status === 200) {
-            let response = JSON.parse(attr.responseText);
-            if (response.newPosts && response.newPosts.length > 0) {
-                addNewPosts(response.newPosts);
-            }
-        }
-    };
-
-    attr.send();
 }
 
-function addNewPosts(newPosts) {
-    let frontPagePosts = document.getElementById("front-page-posts");
+function getNewPosts(limit){
+    let post = parseInt(document.getElementById("front-page-posts").firstElementChild.id);
 
-    newPosts.forEach(function (post) {
-        // Create a new post element
-        let postElement = document.createElement("div");
-        postElement.classList.add("full-post");
-        postElement.dataset.postId = post.post_id;
+    if(!isNaN(post)){
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4 && xhr.status == 200){
+                let postArray = null;
 
-        postElement.innerHTML = `
-            <img src="${post.profile_photo}" alt="Profile Picture" class="post-avatar" />
-            <div class="post-username"> ${post.username} </div>
-            <div class="post-time"> ${post.timestamp} </div>
-            <div class="post-title-full">
-                <a href="viewPost.php?post_id=${post.post_id}"> ${post.title} </a>
-            </div>
-            <div class="post-content-full"> ${post.content} </div>
-            ${post.post_image ? `<img src="${post.post_image}" alt="Post Image" class="post-photo-full" />` : ''}
-        `;
+                postArray = JSON.parse(xhr.responseText);
+                console.log(postArray);
 
-        // Insert the new post at the top
-        frontPagePosts.insertBefore(postElement, frontPagePosts.firstChild);
-    });
+                let frontPagePosts = document.getElementById("front-page-posts");
 
-    // Remove old posts if there are more than 20
-    let allPosts = document.querySelectorAll(".full-post");
-    if (allPosts.length > 20) {
-        for (let i = 20; i < allPosts.length; i++) {
-            frontPagePosts.removeChild(allPosts[i]);
+                if(postArray.length > 0){
+                    for(let i = 0; i < postArray.length;  i++){
+                        let jsonObject = postArray[i];
+                        let newFullPost = document.createElement("div");
+                        newFullPost.setAttribute('id', jsonObject.post_id);
+                        newFullPost.classList.add('full-post');
+                        newFullPost.innerHTML = `
+                            <img src="` + jsonObject.profile_photo + `" alt="Profile Picture" class="post-avatar" />
+                            <div class="post-username">` + jsonObject.username + `</div>
+                            <div class="post-time">` + jsonObject.timestamp + `</div>
+                            <div class="post-title-full">
+                                <a href="viewPost.php?post_id=` + jsonObject.post_id + `">` + jsonObject.title + `</a>
+                            </div>
+                            <div class="post-content-full">` + jsonObject.content + `</div>
+                            <img src="` + jsonObject.post_image + `" alt="Post Image" class="post-photo-full" />
+                        `;
+
+                        frontPagePosts.insertBefore(newFullPost, frontPagePosts.firstChild);
+                    }                   
+
+                    if (frontPagePosts.children.length > limit) {
+                        while (frontPagePosts.children.length > limit) {
+                            frontPagePosts.removeChild(frontPagePosts.lastChild);
+                        }
+                    }
+                }
+            }
         }
+        xhr.open("GET", "ajaxBackend.php?lastPostId=" + post + "&limit=" + limit, true);
+	 	xhr.send();
     }
-} 
-//---------------- event handler for New Posts in Home Page end ------------------------
+}
+	// if (username.length > 0) {
+	// 	let xhr = new XMLHttpRequest();
+	// 	xhr.onreadystatechange = function () {
+	// 		if (xhr.readyState == 4 && xhr.status == 200) {
+
+	// 			let loginHistoryArray = null;
+	// 			// TODO 6a: Parse the response text into JSON format and keep it on the 'loginHistoryArray' variable;
+	// 			loginHistoryArray = JSON.parse(xhr.responseText);
+
+	// 			let lastLoginDiv = document.getElementById("last-login");
+	// 			lastLoginDiv.innerHTML = '';
+	// 			if (loginHistoryArray.length > 0) {
+	// 				let usernameFromBackendData = loginHistoryArray[0].username;
+	// 				let pTag = document.createElement("p");
+	// 				pTag.textContent = username + " last logged in on:";
+	// 				lastLoginDiv.append(pTag);
+
+	// 				if (username == usernameFromBackendData) {
+
+	// 					// TODO 6b: Complete the logic in the for loop to iterate all items of the 'loginHistoryArray' array.
+	// 					for (let i = 0; i < loginHistoryArray.length;  i++) {
+	// 						let jsonObject = loginHistoryArray[i];
+	// 						let loginTime = jsonObject.login_time;
+
+
+	// 						// TODO 6c: create p tag for each loginTime and append that tag as a child of the lastLoginDiv.  
+	// 						let newPTag = document.createElement("p");
+	// 						newPTag.textContent = loginTime;
+	// 						lastLoginDiv.append(newPTag);
+
+	// 						// TODO 6b: Loop Ends
+	// 					}
+	// 				}
+	// 			} else {
+	// 				const pTag = document.createElement("p");
+	// 				const textnode = document.createTextNode("No previous login found for " + username + ".");
+	// 				pTag.appendChild(textnode);
+	// 				lastLoginDiv.appendChild(pTag);
+	// 			}
+	// 		}
+	// 	}
+
+	// 	// TODO 4c: Open and send a GET ajax request including the username to the 'ajax_backend.php' file. 
+	// 	// ...
+	// 	xhr.open("GET", "ajax_backend.php?username=" + username, true);
+	// 	xhr.send();
+	// } else {
+	// 	let lastLoginText = document.getElementById("last-login");
+	// 	lastLoginText.innerHTML = "";
+	// }

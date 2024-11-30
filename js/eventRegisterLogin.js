@@ -17,3 +17,6 @@ password.addEventListener("blur", passwordHandler);
 // submit button
 let form = document.getElementById("login-form");
 form.addEventListener("submit", validateLogin);
+
+// for the top posts on the page
+document.addEventListener('DOMContentLoaded', () => waitForPosts(5));

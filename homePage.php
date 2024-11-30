@@ -18,7 +18,7 @@ try {
     throw new PDOException($e->getMessage(), (int)$e->getCode());
 }
 
-$query = "SELECT p.*, u.username, u.profile_photo FROM post p JOIN users u ON p.user_id = u.user_id ORDER BY timestamp DESC LIMIT 20";
+$query = "SELECT p.*, u.username, u.profile_photo FROM post p JOIN users u ON p.user_id = u.user_id ORDER BY post_id DESC LIMIT 20";
 $stmt = $db->query($query);
 $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -43,6 +43,7 @@ if (!isset($_SESSION["user_id"])) {
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="description" content="the front page of basecamp before the user has logged in" />
         <link rel="stylesheet" type="text/css" href="css/styles.css" />
+        <script src="js/eventHandlers.js" type="text/javascript"></script>
     </head>
 
     <body>
@@ -77,7 +78,7 @@ if (!isset($_SESSION["user_id"])) {
 
             <div id="front-page-posts">
                 <?php foreach ($posts as $post): ?>
-                    <div class="full-post">
+                    <div class="full-post" id=<?= htmlspecialchars($post['post_id']) ?>>
                         <img src="<?= htmlspecialchars($post['profile_photo']) ?>" alt="Profile Picture" class="post-avatar" />
                         <div class="post-username"> <?= htmlspecialchars($post['username']) ?> </div>
                         <div class="post-time"> <?= htmlspecialchars($post['timestamp']) ?> </div>
@@ -92,6 +93,6 @@ if (!isset($_SESSION["user_id"])) {
                 <?php endforeach; ?>
             </div>
         </div>
-        <script src="js/eventRegisterNewPosts.js"></script>
+        <script src="js/eventRegisterHome.js" type="text/javascript"></script>
     </body>
 </html>

@@ -160,7 +160,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <div id="front-page-posts">
                 <?php foreach ($posts as $post): ?>
-                    <div class="full-post">
+                    <div class="full-post" id=<?= htmlspecialchars($post['post_id']) ?>>
                         <img src="<?= htmlspecialchars($post['profile_photo']) ?>" alt="Profile Picture" class="post-avatar" />
                         <div class="post-username"> <?= htmlspecialchars($post['username']) ?> </div>
                         <div class="post-time"> <?= htmlspecialchars($post['timestamp']) ?> </div>
