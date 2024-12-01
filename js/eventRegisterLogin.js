@@ -21,5 +21,5 @@ form.addEventListener("submit", validateLogin);
 // for the top posts on the page
 
 document.addEventListener("DOMContentLoaded", function () {
-    setInterval(() => getNewPosts(5), 10000); // 120000 ms = 2 minutes
+    setInterval(() => getNewPosts(5), 120000); // 120000 ms = 2 minutes
 });

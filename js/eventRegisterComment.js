@@ -23,7 +23,7 @@ commentSection.addEventListener("click", (event) => updateVotes(event));
 
 // Update comments every 2 minutes
 document.addEventListener("DOMContentLoaded", function () {
-    setInterval(() => getUpdatedComments(), 10000); // 120000 ms = 2 minutes
+    setInterval(() => getUpdatedComments(), 120000); // 120000 ms = 2 minutes
 });
 
 
