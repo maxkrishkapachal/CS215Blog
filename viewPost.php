@@ -44,65 +44,42 @@ if (!$post) {
 }
 
 // Retrieve comments
-$commentQuery = "SELECT c.*, u.username, u.profile_photo, 
+$commentQuery = "SELECT 
+        c.*, 
+        u.username, 
+        u.profile_photo, 
         SUM(CASE WHEN v.updown = 1 THEN 1 ELSE 0 END) AS upvotes, 
-        SUM(CASE WHEN v.updown = 0 THEN 1 ELSE 0 END) AS downvotes
+        SUM(CASE WHEN v.updown = 0 THEN 1 ELSE 0 END) AS downvotes,
+        MAX(CASE WHEN v.user_id = $userId THEN v.updown ELSE NULL END) AS user_vote
     FROM comment c 
     JOIN users u ON c.user_id = u.user_id 
     LEFT JOIN vote v ON c.comment_id = v.comment_id
-    WHERE c.post_id = '$postId'
+    WHERE c.post_id = $postId
     GROUP BY c.comment_id
-    ORDER BY c.timestamp ASC;";
+    ORDER BY c.timestamp DESC";
 $commentStmt = $db->query($commentQuery);
 $comments = $commentStmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // If we got here through a POST submitted form, process the form
-    if (isset($_POST['post-comment'])){
-        $comment = test_input($_POST["content"]);
-        $comment = html_entity_decode($comment);
-    
-        //If there are no errors so far we can try inserting a user     
-        $query = "INSERT INTO comment (post_id, user_id, timestamp, content) VALUES ('$postId', '$userId', NOW(), :comment)";
-        $result = $db->prepare($query);
+    $comment = test_input($_POST["content"]);
+    $comment = html_entity_decode($comment);
 
-        // Bind the parameters
-        $result->bindParam(':comment', $comment);
-        $result->execute();
+    //If there are no errors so far we can try inserting a user     
+    $query = "INSERT INTO comment (post_id, user_id, timestamp, content) VALUES ('$postId', '$userId', NOW(), :comment)";
+    $result = $db->prepare($query);
 
-        if (!$result) {
-            $errors["Database Error:"] = "Failed to insert comment";
-        } 
-        else {
-            header("Location: " . $_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING']);
-            exit();
-        }
-    }
+    // Bind the parameters
+    $result->bindParam(':comment', $comment);
+    $result->execute();
+
+    if (!$result) {
+        $errors["Database Error:"] = "Failed to insert comment";
+    } 
     else {
-        $commentId = test_input($_POST["comment_id"]);
-        $updown = isset($_POST['comment-upvote']) ? 1 : 0;
-
-        $query = "SELECT updown FROM vote WHERE user_id='$userId' AND comment_id='$commentId'";
-        $result = $db->query($query, PDO::FETCH_ASSOC);
-        $match = $result->fetch();
-
-        if (!$match) {
-            $query = "INSERT INTO vote (comment_id, user_id, updown) VALUES ('$commentId', '$userId', '$updown')";
-            $result = $db->exec($query);
-            
-        }
-        else if($match['updown'] != $updown){
-            $query = "UPDATE vote SET updown='$updown' WHERE user_id=$userId AND comment_id='$commentId'";
-            $result = $db->exec($query);
-        }
-        
         header("Location: " . $_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING']);
         exit();
     }
-
-    // Collect and validate form inputs
-    
     
 
     if (!empty($errors)) {
@@ -150,12 +127,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
 
         <div id="view-post-container">
-            <div class="full-post">
+            <div class="full-post" data-post="<?= htmlspecialchars($postId) ?>">
                 <img src="<?= htmlspecialchars($post['profile_photo']) ?>" alt="Profile Picture" class="post-avatar" />
-                <div class="post-username"> <?= htmlspecialchars($post['username']) ?> </div>
-                <div class="post-time"> <?= htmlspecialchars($post['timestamp']) ?> </div>
-                <div class="post-title-full"> <?= htmlspecialchars($post['title']) ?> </div>
-                <div class="post-content-full"> <?= htmlspecialchars($post['content']) ?> </div>
+                <div class="post-username"><?= htmlspecialchars($post['username']) ?></div>
+                <div class="post-time"><?= htmlspecialchars($post['timestamp']) ?></div>
+                <div class="post-title-full"><?= htmlspecialchars($post['title']) ?></div>
+                <div class="post-content-full"><?= htmlspecialchars($post['content']) ?></div>
                 <?php if ($post['post_image']): ?>
                     <img src="<?= htmlspecialchars($post['post_image']) ?>" alt="Post Image" class="post-photo-full" />
                 <?php endif; ?>
@@ -163,23 +140,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <div id="comment-section">
                 <?php foreach ($comments as $comment): ?>
-                    <div class="individual-comment">
+                    <div class="individual-comment" data-comment="<?= htmlspecialchars($comment['comment_id']) ?>">
                         <img src="<?= htmlspecialchars($comment['profile_photo']) ?>" alt="Comment Avatar" class="comment-avatar" />
-                        <div class="comment-username"> <?= htmlspecialchars($comment['username']) ?> </div>
-                        <div class="comment-time"> <?= htmlspecialchars($comment['timestamp']) ?> </div>
-                        <div class="comment-content"> <?= htmlspecialchars($comment['content']) ?> </div>
-                        <form class="comment-stats" action="" enctype="multipart/form-data" method="post">
-                            <input type="hidden" name="comment_id" value="<?= htmlspecialchars($comment['comment_id']) ?>" />
-                            <input type="submit" id="comment-upvote" class="vote-style post-comment" name="comment-upvote" value="+<?= htmlspecialchars($comment['upvotes'] ?? 0) ?>" />
-                            <input type="submit" id="comment-downvote" class="vote-style post-comment" name="comment-downvote" value="-<?= htmlspecialchars($comment['downvotes'] ?? 0) ?>" />
-                        </form>
+                        <div class="comment-username"><?= htmlspecialchars($comment['username']) ?></div>
+                        <div class="comment-time"><?= htmlspecialchars($comment['timestamp']) ?></div>
+                        <div class="comment-content"><?= htmlspecialchars($comment['content']) ?></div>
+                        <div class="comment-stats">
+                            <button class="vote-style <?= $comment['user_vote'] === 1 ? "voted" : "unvoted" ?> upvote">+<?= htmlspecialchars($comment['upvotes']) ?></button>
+                            <button class="vote-style <?= $comment['user_vote'] === 0 ? "voted" : "unvoted" ?> downvote">-<?= htmlspecialchars($comment['downvotes']) ?></button>
+                        </div>
                     </div>
                 <?php endforeach; ?>
             </div>
 
             <?php if (isset($_SESSION['user_id'])): ?>
                 <form class="comment-form" action="" enctype="multipart/form-data" method="post">
-                    <input type="hidden" name="post_id" value="<?= $postId ?>" />
+                    <input type="hidden" name="post_id" value="<?= $postId ?>">
                     <div class="comment-form-container">
                         <textarea rows="4" cols="50" id="leave-comment" name="content" ></textarea>
                         <div id="error-text-comment" class="error-text hidden">

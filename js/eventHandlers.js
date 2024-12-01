@@ -464,13 +464,8 @@ function commentHandler(event){
 /********************* AJAX HANDLERS ************************/
 /************************************************************/
 
-function waitForPosts(limit) {
-    setInterval(() => getNewPosts(limit), 10000);
-
-}
-
 function getNewPosts(limit){
-    let post = parseInt(document.getElementById("front-page-posts").firstElementChild.id);
+    let post = parseInt(document.getElementById("front-page-posts").firstElementChild.dataset.post);
 
     if(!isNaN(post)){
         let xhr = new XMLHttpRequest();
@@ -479,12 +474,11 @@ function getNewPosts(limit){
                 let postArray = null;
 
                 postArray = JSON.parse(xhr.responseText);
-                console.log(postArray);
 
                 let frontPagePosts = document.getElementById("front-page-posts");
 
                 if(postArray.length > 0){
-                    for(let i = 0; i < postArray.length;  i++){
+                    for(let i = 0; i < postArray.length; i++){
                         let jsonObject = postArray[i];
                         let newFullPost = document.createElement("div");
                         newFullPost.setAttribute('id', jsonObject.post_id);
@@ -511,112 +505,101 @@ function getNewPosts(limit){
                 }
             }
         }
-        xhr.open("GET", "ajaxBackend.php?lastPostId=" + post + "&limit=" + limit + "&req=" + "p", true);
+        xhr.open("GET", "ajaxBackend.php?lastPostId=" + post + "&limit=" + limit + "&req=p", true);
 	 	xhr.send();
     }
 }
-	// if (username.length > 0) {
-	// 	let xhr = new XMLHttpRequest();
-	// 	xhr.onreadystatechange = function () {
-	// 		if (xhr.readyState == 4 && xhr.status == 200) {
 
-	// 			let loginHistoryArray = null;
-	// 			// TODO 6a: Parse the response text into JSON format and keep it on the 'loginHistoryArray' variable;
-	// 			loginHistoryArray = JSON.parse(xhr.responseText);
+function getUpdatedComments() {
+    let firstCommentElement = document.getElementById("comment-section").firstElementChild;
+    let commentId = firstCommentElement ? parseInt(firstCommentElement.dataset.comment) : 0;
+    let postId = document.getElementsByClassName("full-post")[0].dataset.post;
 
-	// 			let lastLoginDiv = document.getElementById("last-login");
-	// 			lastLoginDiv.innerHTML = '';
-	// 			if (loginHistoryArray.length > 0) {
-	// 				let usernameFromBackendData = loginHistoryArray[0].username;
-	// 				let pTag = document.createElement("p");
-	// 				pTag.textContent = username + " last logged in on:";
-	// 				lastLoginDiv.append(pTag);
+    if (!isNaN(commentId)) {
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                let updatedCommentsArray = null;
+                updatedCommentsArray = JSON.parse(xhr.responseText);
 
-	// 				if (username == usernameFromBackendData) {
-
-	// 					// TODO 6b: Complete the logic in the for loop to iterate all items of the 'loginHistoryArray' array.
-	// 					for (let i = 0; i < loginHistoryArray.length;  i++) {
-	// 						let jsonObject = loginHistoryArray[i];
-	// 						let loginTime = jsonObject.login_time;
-
-
-	// 						// TODO 6c: create p tag for each loginTime and append that tag as a child of the lastLoginDiv.  
-	// 						let newPTag = document.createElement("p");
-	// 						newPTag.textContent = loginTime;
-	// 						lastLoginDiv.append(newPTag);
-
-	// 						// TODO 6b: Loop Ends
-	// 					}
-	// 				}
-	// 			} else {
-	// 				const pTag = document.createElement("p");
-	// 				const textnode = document.createTextNode("No previous login found for " + username + ".");
-	// 				pTag.appendChild(textnode);
-	// 				lastLoginDiv.appendChild(pTag);
-	// 			}
-	// 		}
-	// 	}
-
-	// 	// TODO 4c: Open and send a GET ajax request including the username to the 'ajax_backend.php' file. 
-	// 	// ...
-	// 	xhr.open("GET", "ajax_backend.php?username=" + username, true);
-	// 	xhr.send();
-	// } else {
-	// 	let lastLoginText = document.getElementById("last-login");
-	// 	lastLoginText.innerHTML = "";
-	// }
-
-
-    function getUpdatedComments(limit) {
-        let firstCommentElement = document.getElementById("comment-section").firstElementChild;
-        let commentId = firstCommentElement ? parseInt(firstCommentElement.dataset.commentId) : 0;
-    
-        if (!isNaN(commentId)) {
-            let xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    let updatedCommentsArray = null;
-                    updatedCommentsArray = JSON.parse(xhr.responseText);
-                    console.log(updatedCommentsArray);
-    
-                    let commentSection = document.getElementById("comment-section");
-                    // Update the comments
-                    if (updatedCommentsArray.comments && updatedCommentsArray.comments.length > 0) {
-                        for (let i = 0; i < updatedCommentsArray.comments.length; i++) {
-                            let jsonObject = updatedCommentsArray.comments[i];
-                            let newCommentElement = document.createElement("div");
-                            newCommentElement.setAttribute('data-comment-id', jsonObject.comment_id);
-                            newCommentElement.classList.add('individual-comment');
-                            newCommentElement.innerHTML = `
-                                <img src="` + jsonObject.profile_photo + `" alt="Comment Avatar" class="comment-avatar" />
-                                <div class="comment-username">` + jsonObject.username + `</div>
-                                <div class="comment-time">` + jsonObject.timestamp + `</div>
-                                <div class="comment-content">` + jsonObject.content + `</div>
-                                <form class="comment-stats" action="" enctype="multipart/form-data" method="post">
-                                    <input type="hidden" name="comment_id" value="` + jsonObject.comment_id + `" />
-                                    <input type="submit" id="comment-upvote" class="vote-style post-comment" name="comment-upvote" value="+` + jsonObject.upvotes + `" />
-                                    <input type="submit" id="comment-downvote" class="vote-style post-comment" name="comment-downvote" value="-` + jsonObject.downvotes + `" />
-                                </form>
-                            `;
-    
-                            commentSection.insertBefore(newCommentElement, commentSection.firstChild);
-    
-                            // Highlight the new or updated comment
-                            newCommentElement.classList.add("highlight-update");
-                            // setTimeout(function () {
-                            //     newCommentElement.classList.remove("highlight-update");
-                            // }, 5000); // Remove highlight after 5 seconds
-                        }
+                let commentSection = document.getElementById("comment-section");
+                // Update the comments
+                if (updatedCommentsArray && updatedCommentsArray.length > 0) {
+                    for (let i = 0; i < updatedCommentsArray.length; i++) {
+                        let jsonObject = updatedCommentsArray[i];
+                        let newCommentElement = document.createElement("div");
+                        newCommentElement.setAttribute('data-comment', jsonObject.comment_id);
+                        newCommentElement.classList.add('individual-comment');
+                        newCommentElement.innerHTML = `
+                            <img src="` + jsonObject.profile_photo + `" alt="Comment Avatar" class="comment-avatar" />
+                            <div class="comment-username">` + jsonObject.username + `</div>
+                            <div class="comment-time">` + jsonObject.timestamp + `</div>
+                            <div class="comment-content">` + jsonObject.content + `</div>
+                            <div class="comment-stats">
+                                <button class="vote-style ` + (jsonObject.user_vote === 1 ? "voted" : "unvoted") + ` upvote">+` + jsonObject.upvotes + `</button>
+                                <button class="vote-style ` + (jsonObject.user_vote === 0 ? "voted" : "unvoted") + ` downvote">-` + jsonObject.downvotes + `</button>
+                            </div>
+                        `;
                         
-                        
-                        
+                        commentSection.insertBefore(newCommentElement, commentSection.firstChild);
+
+                        // Highlight the new or updated comment
+                        newCommentElement.classList.remove("highlight-update");
+                        newCommentElement.classList.add("highlight-update");
                     }
                 }
             }
-            xhr.open("GET", "ajaxBackend.php?lastCommentId=" + commentId + "&limit=" + limit + "&req=" + "c", true);
-            xhr.send();
+        }
+        xhr.open("GET", "ajaxBackend.php?lastCommentId=" + commentId + "&postId=" + postId + "&req=" + "c", true);
+        xhr.send();
+    }
+}
+
+function updateVotes(event){
+    let commentId = event.target.parentElement.parentElement.dataset.comment;
+    let vote;    
+
+    if (event.target.classList.contains("upvote")) vote = 1; 
+    else if (event.target.classList.contains("downvote")) vote = 0;
+
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4 && xhr.status == 200){
+            let voteArray = JSON.parse(xhr.responseText);
+
+            // let comment = document.getElementById(commentId);
+            let comment = document.querySelector('[data-comment="' + commentId + '"]');
+
+            let upvote = comment.querySelector('.upvote');
+            let downvote = comment.querySelector('.downvote');
+
+            upvote.innerHTML = "+" + voteArray.upvotes;
+            downvote.innerHTML = "-" + voteArray.downvotes;
+
+            if(vote === 1){
+                upvote.classList.add("voted");
+                upvote.classList.remove("unvoted");
+                downvote.classList.add("unvoted");
+                downvote.classList.remove("voted");
+            }
+            else if(vote === 0){
+                downvote.classList.add("voted");
+                downvote.classList.remove("unvoted");
+                upvote.classList.add("unvoted");
+                upvote.classList.remove("voted");
+            }
         }
     }
+    xhr.open("GET", "ajaxBackend.php?vote=" + vote + "&commentId=" + commentId + "&req=" + "v", true);
+    xhr.send();
+}
+
+
+
+
+
+
+
 
 
 

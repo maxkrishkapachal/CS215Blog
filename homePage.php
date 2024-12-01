@@ -43,7 +43,7 @@ if (!isset($_SESSION["user_id"])) {
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="description" content="the front page of basecamp before the user has logged in" />
         <link rel="stylesheet" type="text/css" href="css/styles.css" />
-        <script src="js/eventHandlers.js" type="text/javascript"></script>
+        <script src="js/eventHandlers.js" defer type="text/javascript"></script>
     </head>
 
     <body>
@@ -78,14 +78,14 @@ if (!isset($_SESSION["user_id"])) {
 
             <div id="front-page-posts">
                 <?php foreach ($posts as $post): ?>
-                    <div class="full-post" id=<?= htmlspecialchars($post['post_id']) ?>>
+                    <div class="preview-post" data-post=<?= htmlspecialchars($post['post_id']) ?>>
                         <img src="<?= htmlspecialchars($post['profile_photo']) ?>" alt="Profile Picture" class="post-avatar" />
-                        <div class="post-username"> <?= htmlspecialchars($post['username']) ?> </div>
-                        <div class="post-time"> <?= htmlspecialchars($post['timestamp']) ?> </div>
-                        <div class="post-title-full">
+                        <div class="post-username"><?= htmlspecialchars($post['username']) ?></div>
+                        <div class="post-time"><?= htmlspecialchars($post['timestamp']) ?></div>
+                        <div class="post-title-preview">
                             <a href="viewPost.php?post_id=<?= htmlspecialchars($post['post_id']) ?>"> <?= htmlspecialchars($post['title']) ?> </a>
                         </div>
-                        <div class="post-content-full"> <?= htmlspecialchars($post['content']) ?> </div>
+                        <div class="post-content-preview"><?= htmlspecialchars($post['content']) ?></div>
                         <?php if ($post['post_image']): ?>
                             <img src="<?= htmlspecialchars($post['post_image']) ?>" alt="Post Image" class="post-photo-full" />
                         <?php endif; ?>
@@ -93,6 +93,6 @@ if (!isset($_SESSION["user_id"])) {
                 <?php endforeach; ?>
             </div>
         </div>
-        <script src="js/eventRegisterHome.js" type="text/javascript"></script>
+        <script src="js/eventRegisterHome.js" defer type="text/javascript"></script>
     </body>
 </html>

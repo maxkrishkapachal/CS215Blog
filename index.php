@@ -102,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="description" content="The front page after the user has logged in with profile on the sidebar" />
         <link rel="stylesheet" type="text/css" href="css/styles.css" />
-        <script src="js/eventHandlers.js" type="text/javascript"></script>
+        <script src="js/eventHandlers.js" defer type="text/javascript"></script>
     </head>
 
     <body>
@@ -160,14 +160,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <div id="front-page-posts">
                 <?php foreach ($posts as $post): ?>
-                    <div class="full-post" id=<?= htmlspecialchars($post['post_id']) ?>>
+                    <div class="preview-post" data-post=<?= htmlspecialchars($post['post_id']) ?>>
                         <img src="<?= htmlspecialchars($post['profile_photo']) ?>" alt="Profile Picture" class="post-avatar" />
                         <div class="post-username"> <?= htmlspecialchars($post['username']) ?> </div>
                         <div class="post-time"> <?= htmlspecialchars($post['timestamp']) ?> </div>
-                        <div class="post-title-full">
+                        <div class="post-title-preview">
                             <a href="viewPost.php?post_id=<?= htmlspecialchars($post['post_id']) ?>"> <?= htmlspecialchars($post['title']) ?> </a>
                         </div>
-                        <div class="post-content-full"> <?= htmlspecialchars($post['content']) ?> </div>
+                        <div class="post-content-preview"> <?= htmlspecialchars($post['content']) ?> </div>
                         <?php if ($post['post_image']): ?>
                             <img src="<?= htmlspecialchars($post['post_image']) ?>" alt="Post Image" class="post-photo-full" />
                         <?php endif; ?>
@@ -175,6 +175,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <?php endforeach; ?>
             </div>
         </div>
-        <script src="js/eventRegisterLogin.js" type="text/javascript"></script>
+        <script src="js/eventRegisterLogin.js" defer type="text/javascript"></script>
     </body>
 </html>

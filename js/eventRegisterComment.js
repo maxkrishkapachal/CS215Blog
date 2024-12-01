@@ -17,7 +17,13 @@ form.addEventListener("submit", validatePostComment);
 let commentTextarea = document.getElementById("leave-comment");
 commentTextarea.addEventListener("input", (event) => charCounter(event, 1000));
 
+// upvotes and downvotes
+let commentSection = document.getElementById("comment-section");
+commentSection.addEventListener("click", (event) => updateVotes(event));
+
 // Update comments every 2 minutes
 document.addEventListener("DOMContentLoaded", function () {
-    setInterval(function () { checkForUpdatedComments();}, 120000); // 120000 ms = 2 minutes
+    setInterval(() => getUpdatedComments(), 10000); // 120000 ms = 2 minutes
 });
+
+

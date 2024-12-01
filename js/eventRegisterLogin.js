@@ -19,4 +19,7 @@ let form = document.getElementById("login-form");
 form.addEventListener("submit", validateLogin);
 
 // for the top posts on the page
-document.addEventListener('DOMContentLoaded', () => waitForPosts(5));
+
+document.addEventListener("DOMContentLoaded", function () {
+    setInterval(() => getNewPosts(5), 10000); // 120000 ms = 2 minutes
+});

@@ -74,10 +74,10 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <img src="<?= htmlspecialchars($_SESSION['profile_photo']) ?>" alt="Profile Picture" class="post-avatar" />
                     <div class="post-username"> <?= htmlspecialchars($_SESSION['username']) ?> </div>
                     <div class="post-time"> <?= htmlspecialchars($post['timestamp']) ?> </div>
-                    <div class="post-title-full">
+                    <div class="post-title-preview">
                         <a href="viewPost.php?post_id=<?= htmlspecialchars($post['post_id']) ?>"> <?= htmlspecialchars($post['title']) ?> </a>
                     </div>
-                    <div class="post-content-full"> <?= htmlspecialchars($post['content']) ?> </div>
+                    <div class="post-content-preview"> <?= htmlspecialchars($post['content']) ?> </div>
                     <?php if ($post['post_image']): ?>
                         <img src="<?= htmlspecialchars($post['post_image']) ?>" alt="Post Image" class="post-photo-full" />
                     <?php endif; ?>
@@ -103,8 +103,8 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             $voteStmt = $db->query($voteQuery);
                             $votes = $voteStmt->fetch(PDO::FETCH_ASSOC);
                             ?>
-                            <div class="vote-style">+<?= htmlspecialchars($votes['up_votes']) ?></div>
-                            <div class="vote-style">-<?= htmlspecialchars($votes['down_votes']) ?></div>
+                            <div class="vote-style unclickable">+<?= htmlspecialchars($votes['up_votes']) ?></div>
+                            <div class="vote-style unclickable">-<?= htmlspecialchars($votes['down_votes']) ?></div>
                         </div>
                     </div>
                 <?php endforeach; ?>

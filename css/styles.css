@@ -440,7 +440,8 @@ textarea, input[type="text"] {
 
 /* for preview posts on front page/management page and for viewing full posts */
 .individual-post,
-.full-post {
+.full-post,
+.preview-post {
     background-color: white;
     padding: 5px;
     display: grid;
@@ -462,6 +463,12 @@ textarea, input[type="text"] {
     grid-template-columns: 15% auto 30%;
     grid-template-rows: calc(0.27 * 200px) calc(0.195 * 200px) calc(0.535 * 200px) auto 20px;
     height: auto;
+}
+
+.preview-post {
+    grid-template-columns: 15% auto 30%;
+    grid-template-rows: calc(0.27 * 200px) calc(0.195 * 200px) calc(0.535 * 200px) auto 20px;
+    height: 300px;
 }
 
 /* POST GENERAL STYLING */
@@ -504,10 +511,10 @@ textarea, input[type="text"] {
 
 /* POST TITLE */
 
-.post-title {
+.post-title-preview {
     grid-column: 1 / 3;
     grid-row: 3 / 4;
-    font-size: 25px;
+    font-size: 35px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -525,11 +532,11 @@ a {
 /* POST CONTENT */
 
 .post-content-preview {
-    grid-column: 1 / 3;
-    grid-row: 4 / 6;
+    grid-column: 1 / 4;
+    grid-row: 4 / 5;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: 15.5px;
+    padding: 20px 0px 0px 0px;
 }
 
 .post-content-full {
@@ -665,16 +672,30 @@ a {
 }
 
 .vote-style {
-    border: 2px solid var(--main);
+    font-family: "LS", sans-serif;
+    border: 2px solid var(--accent-1);
     border-radius: 5px;
     padding: 5px 5px;
     margin: 0px 5px;
     color: black;
-    font-size: 10px;
+    font-size: 15px;
     box-sizing: border-box;
     text-align: center;
     text-decoration: none;
-    width: 80%;
+    width: 100%;
+}
+
+.unclickable {
+    border: none;
+    padding: 2px 2px;
+}
+
+.voted {
+  background: var(--accent-1);
+}
+
+.unvoted {
+  background: transparent;
 }
 
 /* LEAVE A COMMENT */
