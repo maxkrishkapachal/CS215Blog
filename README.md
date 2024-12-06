@@ -17,3 +17,5 @@ A blog hosted on Titan using JavaScript, HTML, CSS, PHP, SQL, and Ajax for CS 21
 - ✔️ Assignment 3: JavaScript
 - ✔️ Assignment 4: SQL
 - ✔️ Assignment 5: PHP
+- ✔️ Assignment 5: AJAX
+
