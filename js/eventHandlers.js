@@ -544,8 +544,8 @@ function getUpdatedComments() {
                         commentSection.insertBefore(newCommentElement, commentSection.firstChild);
 
                         // Highlight the new or updated comment
-                        newCommentElement.classList.remove("highlight-update");
                         newCommentElement.classList.add("highlight-update");
+                        setTimeout(() => {newCommentElement.classList.remove("highlight-update");}, 5000);
                     }
                 }
             }
