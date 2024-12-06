@@ -51,16 +51,6 @@ function validateCPassword(cpword){
         return false;
 }
 
-// validate avatar
-function validateAvatar(avatar){
-    let avatarRegEx = /^[^\n]+\.[a-zA-Z]{3,4}$/;
-
-    if(avatarRegEx.test(avatar))
-        return true;
-    else
-        return false;
-}
-
 // validate post title
 function validatePostTitle(title){
     if(title.length >= TEXT_MIN && title.length <= TITLE_MAX)
@@ -81,12 +71,18 @@ function validatePostImage(image){
     let file = image.files[0];
 
     let MAX_FILE_SIZE = 1024 * 1024;  // 1MB in bytes
+    
 
-    console.log(file);
-    console.log(file.size);
-    console.log(MAX_FILE_SIZE);
+    let fileName = file.name;
+    let fileExtension = fileName.split('.').pop().toLowerCase();
 
-    if(file && file.size <= MAX_FILE_SIZE)
+    let allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+
+    console.log("fileName: " + fileName);
+    console.log("file: " + file);
+    console.log("fileExtension: " + fileExtension);
+
+    if(file && file.size <= MAX_FILE_SIZE && allowedExtensions.includes(fileExtension))
         return true;
     else   
         return false;
@@ -199,15 +195,15 @@ function validateSignup(event){
         errorMessage.classList.add("hidden");
     }  
 
-    if(!validateAvatar(avatar.value)){
+    if(!validatePostImage(avatar.value)){
         avatar.classList.add("error-input");
-        let errorMessage = document.getElementById("error-text-avatar");
+        let errorMessage = document.getElementById("error-text-image");
         errorMessage.classList.remove("hidden");
         formIsValid = false;
     }
     else {
         avatar.classList.remove("error-input");
-        let errorMessage = document.getElementById("error-text-avatar");
+        let errorMessage = document.getElementById("error-text-image");
         errorMessage.classList.add("hidden");
     }
 
@@ -386,21 +382,6 @@ function cPasswordHandler(event){
     }   
 }
 
-// avatar handler
-function avatarHandler(event){
-    let avatar = event.target;
-    let errorMessage = document.getElementById("error-text-avatar");
-
-    if(!validateAvatar(avatar.value)){
-        avatar.classList.add("error-input");
-        errorMessage.classList.remove("hidden");
-    }
-    else {
-        avatar.classList.remove("error-input");
-        errorMessage.classList.add("hidden");
-    }   
-}
-
 // post title
 function postTitleHandler(event){
     let title = event.target;
@@ -544,8 +525,8 @@ function getUpdatedComments() {
                         commentSection.insertBefore(newCommentElement, commentSection.firstChild);
 
                         // Highlight the new or updated comment
+                        newCommentElement.classList.remove("highlight-update");
                         newCommentElement.classList.add("highlight-update");
-                        setTimeout(() => {newCommentElement.classList.remove("highlight-update");}, 5000);
                     }
                 }
             }

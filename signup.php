@@ -90,7 +90,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $query = "INSERT INTO users (first_name, last_name, email, username, password, dob, profile_photo) VALUES ('$firstName', '$lastName', '$email', '$username', '$password', '$dateformat', 'avatar_stub')";
         
         $result = $db->exec($query);
-
         if (!$result) {
             $errors["Database Error:"] = "Failed to insert user";
         } else {
@@ -204,7 +203,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div id="error-text-image" class="error-text hidden">
                                     Profile picture invalid. Photo must be less than 1MB and be of type JPEG, JPG, PNG, or GIF.
                                 </div>
-                                <img class="add-profile-photo" alt="Uploaded Photo" src="images/blank-profile-picture.png" />
                             </div>
                         </div>
                     </div>

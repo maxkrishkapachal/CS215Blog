@@ -29,11 +29,6 @@ password.addEventListener("blur", passwordHandler);
 let cpassword = document.getElementById("confirm-pword");
 cpassword.addEventListener("blur", cPasswordHandler);
 
-// profile picture
-// error-text-avatar
-let avatar = document.getElementById("upload-photo-button");
-avatar.addEventListener("blur", avatarHandler);
-
 // submit button
 let form = document.getElementById("signup-form");
 form.addEventListener("submit", validateSignup);

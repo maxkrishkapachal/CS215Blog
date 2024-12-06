@@ -201,7 +201,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div id="error-text-image" class="error-text hidden">
                             Post image invalid. Photo must be less than 1MB and be of type JPEG, JPG, PNG, or GIF.
                         </div>
-                        <img class="add-post-photo" alt="Uploaded Photo" src="images/camping15.jpg" />
                     </div>
                     <div class="placeholder-container">
                         <input type="submit" class="post-button-style" id="post" name="post-button" value="Post" />
